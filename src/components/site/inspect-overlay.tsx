@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { lastPointer } from "./pointer";
 import { useShell } from "./shell-provider";
 
 type Box = { top: number; left: number; width: number; height: number };
@@ -93,6 +94,13 @@ export function InspectOverlay() {
       schedule();
     };
     document.addEventListener("pointermove", onMove, { passive: true });
+    if (lastPointer.x >= 0) {
+      const start = document.elementFromPoint(lastPointer.x, lastPointer.y) as HTMLElement | null;
+      if (start && start !== document.body && !start.closest(".inspect-badge, .toolbar")) {
+        target.current = start;
+        schedule();
+      }
+    }
     document.documentElement.addEventListener("pointerleave", onLeave);
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);

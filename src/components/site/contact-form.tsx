@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Script from "next/script";
-import { useActionState, useEffect, useRef, useState } from "react";
+import { startTransition, useActionState, useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, CircleAlert, LoaderCircle } from "lucide-react";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 import { track } from "@/lib/analytics";
@@ -74,7 +74,18 @@ export function ContactForm({ firstName }: { firstName: string }) {
     ) : null;
 
   return (
-    <form ref={formRef} action={action} className="form" noValidate>
+    <form
+      ref={formRef}
+      className="form"
+      noValidate
+      // Submitting through onSubmit (not the action prop) stops React from resetting the form,
+      // so a failed validation never wipes what the visitor typed.
+      onSubmit={(e) => {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
+        startTransition(() => action(data));
+      }}
+    >
       {TURNSTILE_KEY && <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="lazyOnload" />}
       <fieldset className="intents">
         <legend>What brings you here?</legend>

@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
+import { lastPointer } from "./pointer";
 
 export type PaletteData = {
   email: string;
@@ -89,6 +90,15 @@ export function ShellProvider({ palette, children }: { palette: PaletteData; chi
     announce(`${next === "dark" ? "Dark" : "Light"} theme`);
     track("theme_toggle", { theme: next });
   }, [announce]);
+
+  useEffect(() => {
+    const onPointer = (e: PointerEvent) => {
+      lastPointer.x = e.clientX;
+      lastPointer.y = e.clientY;
+    };
+    window.addEventListener("pointermove", onPointer, { passive: true });
+    return () => window.removeEventListener("pointermove", onPointer);
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

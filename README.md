@@ -25,7 +25,13 @@ pnpm db:seed                          # (re)load initial content + images; overw
 pnpm admin:create <email> [password]  # create/reset an admin login
 ```
 
-`pnpm db:seed` replaces all content with the initial data. Don't run it after real edits have been made in `/admin`.
+`pnpm db:seed` replaces all content with the initial data. Don't run it after real edits have been made in the admin panel.
+
+After changing data outside the admin panel (SQL, seed), clear the site cache:
+
+```bash
+curl -X POST -H "Authorization: Bearer $REVALIDATE_SECRET" https://hunny-sindhakar.vercel.app/api/revalidate
+```
 
 ## Admin
 

@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, MoveHorizontal } from "lucide-react";
+import { ArrowRight, MoveHorizontal } from "lucide-react";
 import { Board } from "@/components/site/board";
 import { Block, BlockHead, FrameLabel } from "@/components/site/frame";
 import { HeroSelection } from "@/components/site/hero-selection";
+import { LiveSize } from "@/components/site/live-size";
 import { ContactNote, CoreSkills, ExperienceList, FaqList, SkillSets } from "@/components/site/sections";
 import { Statement } from "@/components/site/statement";
 import { StatusPill } from "@/components/site/status-pill";
-import { TrackedLink } from "@/components/site/tracked-link";
 import { WorkCard } from "@/components/site/work-card";
+import { PostList } from "@/components/site/post-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
   getEducation,
@@ -22,7 +23,7 @@ import {
   getSocialLinks,
   getTestimonials,
 } from "@/lib/data";
-import { careerStartYear, formatDate, initials } from "@/lib/format";
+import { careerStartYear, initials } from "@/lib/format";
 import { buildMetadata, faqJsonLd, personJsonLd, websiteJsonLd } from "@/lib/seo";
 
 export async function generateMetadata() {
@@ -58,8 +59,8 @@ export default async function HomePage() {
       <JsonLd data={[personJsonLd(profile, socials, experiences, education), websiteJsonLd(settings), ...(faqs.length ? [faqJsonLd(faqs)] : [])]} />
 
       <Block id="hero" layer="Hero">
-        <FrameLabel name="Hero" size="1440 × Hug" />
-        <div className="frame hero">
+        <FrameLabel name="Hero" sizeSlot={<LiveSize target="hero-frame" />} />
+        <div className="frame hero" id="hero-frame">
           <div className="min-w-0">
             <p className="hero__kicker">
               <span>{profile.name}</span>
@@ -242,27 +243,7 @@ export default async function HomePage() {
               </Link>
             }
           />
-          <div className="posts">
-            {posts.slice(0, 3).map((post) => (
-              <article key={post.id} className="post-card">
-                <TrackedLink href={post.url} target="_blank" rel="noopener" event="social_click" params={{ platform: post.source, from: "post" }}>
-                  {post.cover_url && (
-                    <span className="post-card__img">
-                      <Image src={post.cover_url} alt="" fill sizes="(min-width: 1024px) 400px, 100vw" />
-                    </span>
-                  )}
-                  <span className="post-card__meta">
-                    <span>{post.source}</span>
-                    {post.published_at && <time dateTime={post.published_at}>{formatDate(post.published_at)}</time>}
-                    <ArrowUpRight className="ml-auto size-3.5" aria-hidden />
-                  </span>
-                  <h3 className="post-card__title">{post.title}</h3>
-                  {post.excerpt && <p className="post-card__ex">{post.excerpt}</p>}
-                  <span className="sr-only">(opens on {post.source} in a new tab)</span>
-                </TrackedLink>
-              </article>
-            ))}
-          </div>
+          <PostList posts={posts.slice(0, 3)} from="home" />
         </Block>
       )}
 

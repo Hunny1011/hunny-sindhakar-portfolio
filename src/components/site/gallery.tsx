@@ -27,7 +27,7 @@ export function Gallery({ images, title }: { images: GalleryImage[]; title: stri
     <>
       <ul className="gallery">
         {images.map((im, i) => (
-          <li key={im.url}>
+          <li key={im.url} data-wide={im.width / im.height > 2}>
             <button type="button" onClick={(e) => open(i, e.currentTarget)} aria-label={`Open image ${i + 1} of ${n}: ${im.alt}`}>
               <span className="gallery__n" aria-hidden>
                 {String(i + 1).padStart(2, "0")}
@@ -74,7 +74,7 @@ export function Gallery({ images, title }: { images: GalleryImage[]; title: stri
           }}
         >
           {img && (
-            <Image key={img.url} src={img.url} alt={img.alt} width={img.width} height={img.height} sizes="100vw" className="lightbox__img" />
+            <Image key={img.url} src={img.url} alt={img.alt} fill sizes="100vw" />
           )}
         </div>
         {n > 1 && (

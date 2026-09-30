@@ -3,12 +3,13 @@ import type { ReactNode } from "react";
 import { FrameGlyph } from "./icons";
 
 /** Small mono label above a frame, like Figma's frame names. Decorative. */
-export function FrameLabel({ name, size, className = "" }: { name: string; size?: string; className?: string }) {
+export function FrameLabel({ name, size, className = "", sizeSlot }: { name: string; size?: string; className?: string; sizeSlot?: ReactNode }) {
   return (
     <p className={`frame-label ${className}`} aria-hidden>
       <FrameGlyph />
       {name}
       {size && <span className="frame-label__size">{size}</span>}
+      {sizeSlot}
     </p>
   );
 }

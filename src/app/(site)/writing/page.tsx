@@ -1,11 +1,8 @@
-import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import { Breadcrumbs, FrameLabel } from "@/components/site/frame";
 import { MediumMark } from "@/components/site/icons";
-import { TrackedLink } from "@/components/site/tracked-link";
+import { PostList } from "@/components/site/post-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getPosts, getSocialLinks } from "@/lib/data";
-import { formatDate } from "@/lib/format";
 import { articleListJsonLd, breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -49,29 +46,7 @@ export default async function WritingPage() {
             )}
           </div>
         ) : (
-          <div className="posts">
-            {posts.map((post, i) => (
-              <article key={post.id} className="post-card">
-                <TrackedLink href={post.url} target="_blank" rel="noopener" event="social_click" params={{ platform: post.source, from: "writing" }}>
-                  <span className="post-card__img">
-                    {post.cover_url ? (
-                      <Image src={post.cover_url} alt="" fill sizes="(min-width: 1024px) 420px, 100vw" preload={i === 0} />
-                    ) : (
-                      <span className="grid h-full place-items-center font-serif text-4xl italic text-ink-3">{post.title.slice(0, 1)}</span>
-                    )}
-                  </span>
-                  <span className="post-card__meta">
-                    <span>{post.source}</span>
-                    {post.published_at && <time dateTime={post.published_at}>{formatDate(post.published_at)}</time>}
-                    <ArrowUpRight className="ml-auto size-3.5" aria-hidden />
-                  </span>
-                  <h2 className="post-card__title">{post.title}</h2>
-                  {post.excerpt && <p className="post-card__ex">{post.excerpt}</p>}
-                  <span className="sr-only">(opens on {post.source} in a new tab)</span>
-                </TrackedLink>
-              </article>
-            ))}
-          </div>
+          <PostList posts={posts} from="writing" headingLevel="h2" />
         )}
         {medium && posts.length > 0 && (
           <p className="mt-12">

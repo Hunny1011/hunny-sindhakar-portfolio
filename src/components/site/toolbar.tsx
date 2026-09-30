@@ -13,8 +13,8 @@ const subscribeResize = (cb: () => void) => {
   return () => window.removeEventListener("resize", cb);
 };
 const zoomSnapshot = () => {
-  const panel = window.innerWidth >= 1024 ? 248 : 0;
-  return Math.round(((window.innerWidth - panel) / 1440) * 100);
+  // Zoom relative to the 1440px design frame.
+  return Math.round((window.innerWidth / 1440) * 100);
 };
 const noop = () => () => {};
 const isMac = () => /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);

@@ -198,7 +198,7 @@ function Palette({ data }: { data: PaletteData }) {
             aria-autocomplete="list"
             aria-activedescendant={filtered[current] ? `${uid}-${filtered[current].id}` : undefined}
             aria-label="Search pages, work and actions"
-            placeholder="Jump to a project, copy email, ask AI…"
+            placeholder="Search pages, work, actions…"
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);

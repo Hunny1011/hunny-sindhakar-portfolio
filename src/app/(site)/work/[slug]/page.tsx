@@ -40,7 +40,6 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
   const i = projects.findIndex((p) => p.slug === project.slug);
   const prev = i > 0 ? projects[i - 1] : null;
   const next = i >= 0 && i < projects.length - 1 ? projects[i + 1] : projects[0]?.slug !== project.slug ? projects[0] : null;
-  const first = project.title.split(" ")[0];
 
   const story = [
     { key: "problem", label: "The problem", q: "What was the problem?", body: project.problem },
@@ -196,7 +195,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
               <div>
                 <p className="eyebrow">Screens</p>
                 <h2 id="gallery-title" className="h-section">
-                  Inside <em>{first}</em>
+                  Inside <em>{project.title}</em>
                 </h2>
               </div>
             </div>
