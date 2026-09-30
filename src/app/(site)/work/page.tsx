@@ -1,6 +1,7 @@
 import { Breadcrumbs, FrameLabel } from "@/components/site/frame";
 import { WorkCard } from "@/components/site/work-card";
 import { WorkFilter } from "@/components/site/work-filter";
+import { KIND_TONE } from "@/components/site/tones";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getProjects } from "@/lib/data";
 import { KIND_LABEL_PLURAL, PLATFORM_GROUPS, platformGroups } from "@/lib/format";
@@ -18,7 +19,7 @@ const ORDER: ProjectKind[] = ["case-study", "concept", "graphic"];
 
 export default async function WorkPage() {
   const projects = await getProjects();
-  const kinds = ORDER.filter((k) => projects.some((p) => p.kind === k)).map((k) => ({ value: k, label: KIND_LABEL_PLURAL[k] }));
+  const kinds = ORDER.filter((k) => projects.some((p) => p.kind === k)).map((k) => ({ value: k, label: KIND_LABEL_PLURAL[k], tone: KIND_TONE[k] }));
   const items = projects.map((p) => ({ slug: p.slug, kind: p.kind, platform: platformGroups(p.platforms) }));
   const platforms = PLATFORM_GROUPS.filter((g) => items.some((i) => i.platform.includes(g.value))).map((g) => ({ ...g }));
   const count = (k: ProjectKind) => projects.filter((p) => p.kind === k).length;
@@ -34,14 +35,14 @@ export default async function WorkPage() {
         </h1>
         <div className="kind-note mt-8">
           <p className="m-0">
-            <strong className="text-ink">{KIND_LABEL_PLURAL["case-study"]} ({count("case-study")})</strong> are professional products designed at
+            <strong className="kind-dot" data-tone="cobalt">{KIND_LABEL_PLURAL["case-study"]} ({count("case-study")})</strong> are professional products designed at
             Bombay Softwares and Immence. Most are under NDA, so they are shown as typographic frames with the story in words.
           </p>
           <p className="m-0">
-            <strong className="text-ink">Concepts ({count("concept")})</strong> are self-initiated explorations published on Behance
+            <strong className="kind-dot" data-tone="flame">Concepts ({count("concept")})</strong> are self-initiated explorations published on Behance
             {count("graphic") > 0 && (
               <>
-                , and <strong className="text-ink">graphic design ({count("graphic")})</strong> covers print and branding
+                , and <strong className="kind-dot" data-tone="blush">graphic design ({count("graphic")})</strong> covers print and branding
               </>
             )}
             .

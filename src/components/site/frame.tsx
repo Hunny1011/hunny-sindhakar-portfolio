@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { FrameGlyph } from "./icons";
+import type { Tone } from "./tones";
 
 /** Small mono label above a frame, like Figma's frame names. Decorative. */
 export function FrameLabel({ name, size, className = "", sizeSlot }: { name: string; size?: string; className?: string; sizeSlot?: ReactNode }) {
@@ -21,15 +22,17 @@ export function Block({
   children,
   className = "",
   labelledBy,
+  tone,
 }: {
   id: string;
   layer: string;
   children: ReactNode;
   className?: string;
   labelledBy?: string;
+  tone?: Tone;
 }) {
   return (
-    <section id={id} data-layer={layer} className={`blk ${className}`} aria-labelledby={labelledBy ?? `${id}-title`}>
+    <section id={id} data-layer={layer} data-tone={tone} className={`blk ${className}`} aria-labelledby={labelledBy ?? `${id}-title`}>
       {children}
     </section>
   );

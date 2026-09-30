@@ -6,14 +6,15 @@ import { CopyEmail } from "./copy-email";
 import { ComponentGlyph, InstanceGlyph } from "./icons";
 import { Statement } from "./statement";
 import { StatusPill } from "./status-pill";
+import { toneAt } from "./tones";
 
 /** Experience as a version-history timeline. */
 export function ExperienceList({ items, detailed = false, headingLevel = "h3" }: { items: Experience[]; detailed?: boolean; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
   return (
     <ol className="history">
-      {items.map((e) => (
-        <li key={e.id} className="history__item" data-current={!e.end_date}>
+      {items.map((e, i) => (
+        <li key={e.id} className="history__item" data-current={!e.end_date} data-tone={toneAt(i + 1)}>
           <span className="history__dot" aria-hidden />
           <p className="history__when">
             {!e.end_date && <b>Current version</b>}
@@ -50,8 +51,8 @@ export function SkillSets({ skills, headingLevel = "h3" }: { skills: Skill[]; he
   for (const s of skills) groups.set(s.group_name, [...(groups.get(s.group_name) ?? []), s]);
   return (
     <div className="sets">
-      {[...groups].map(([group, list]) => (
-        <div key={group}>
+      {[...groups].map(([group, list], i) => (
+        <div key={group} data-tone={toneAt(i)}>
           <H className="set__label">
             <ComponentGlyph />
             {group}
@@ -73,8 +74,10 @@ export function SkillSets({ skills, headingLevel = "h3" }: { skills: Skill[]; he
 export function CoreSkills({ items }: { items: string[] }) {
   return (
     <ol className="core">
-      {items.map((s) => (
-        <li key={s}>{s}</li>
+      {items.map((s, i) => (
+        <li key={s} data-tone={toneAt(i)}>
+          {s}
+        </li>
       ))}
     </ol>
   );
@@ -85,7 +88,7 @@ export function FaqList({ faqs }: { faqs: Faq[] }) {
   return (
     <div className="faq">
       {faqs.map((f, i) => (
-        <details key={f.id} name="faq">
+        <details key={f.id} name="faq" data-tone={toneAt(i)}>
           <summary>
             <span className="faq__n" aria-hidden>
               {String(i + 1).padStart(2, "0")}
@@ -104,7 +107,7 @@ export function FaqList({ faqs }: { faqs: Faq[] }) {
 /** Honey sticky note call-to-action. */
 export function ContactNote({ profile, text, id = "contact-cta" }: { profile: Profile; text: string; id?: string }) {
   return (
-    <section id={id} data-layer="Contact" className="blk" aria-labelledby={`${id}-title`}>
+    <section id={id} data-layer="Contact" data-tone="sun" className="blk" aria-labelledby={`${id}-title`}>
       <div className="sticky-note">
         <p className="sticky-note__label" aria-hidden>
           Sticky note · from {profile.name.split(" ")[0]}

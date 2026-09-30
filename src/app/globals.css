@@ -7,12 +7,29 @@
    ========================================================================== */
 
 :root {
-  /* Brand palette — each colour has one job */
-  --cobalt: #112bac;  /* primary accent: selection, focus, links, main buttons */
-  --sun: #ffc412;     /* sticky note, highlighter, dark-mode accent */
-  --blush: #ff93aa;   /* comments */
-  --forest: #0d5f4f;  /* availability, case-study tags */
-  --flame: #ff520d;   /* collaborator cursor, small accents */
+  /* Brand palette (client hexes). Each colour also has:
+     -ink  = text-safe shade on cream/soft fills (AA), -soft = tint for fills,
+     -on   = text colour to use on top of the solid colour. */
+  --cobalt: #112bac;
+  --cobalt-ink: #112bac;
+  --cobalt-soft: #e3e6f7;
+  --cobalt-on: #fef8f3;
+  --sun: #ffc412;
+  --sun-ink: #7a5600;
+  --sun-soft: #fff0c2;
+  --sun-on: #1a1612;
+  --blush: #ff93aa;
+  --blush-ink: #a3214a;
+  --blush-soft: #ffe3e9;
+  --blush-on: #1a1612;
+  --forest: #0d5f4f;
+  --forest-ink: #0d5f4f;
+  --forest-soft: #d9ece7;
+  --forest-on: #fef8f3;
+  --flame: #ff520d;
+  --flame-ink: #b83a06;
+  --flame-soft: #ffe1d3;
+  --flame-on: #1a1612;
   --cream: #fef8f3;
   --night: #1a1612;
   --on-bright: #1a1612;
@@ -64,6 +81,27 @@
 }
 
 [data-theme="dark"] {
+  /* Brighter, same-hue variants so every brand colour reads on night (all AA, see report). */
+  --cobalt: #8fa0ff;
+  --cobalt-ink: #9fb0ff;
+  --cobalt-soft: #232a5c;
+  --cobalt-on: #1a1612;
+  --sun: #ffc412;
+  --sun-ink: #ffd04a;
+  --sun-soft: #3d300a;
+  --sun-on: #1a1612;
+  --blush: #ff93aa;
+  --blush-ink: #ffa3b7;
+  --blush-soft: #45202a;
+  --blush-on: #1a1612;
+  --forest: #4fd1ae;
+  --forest-ink: #5fdcb8;
+  --forest-soft: #123a31;
+  --forest-on: #1a1612;
+  --flame: #ff7a45;
+  --flame-ink: #ff8f5e;
+  --flame-soft: #43210f;
+  --flame-on: #1a1612;
   --paper: #1a1612;
   --paper-2: #221d18;
   --surface: #241e19;
@@ -88,30 +126,7 @@
   color-scheme: dark;
 }
 
-/* No-JS fallback: follow the OS until the theme script sets data-theme. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --paper: #1a1612;
-    --paper-2: #221d18;
-    --surface: #241e19;
-    --surface-2: #2a231d;
-    --chrome: #1f1a15;
-    --ink: #fef8f3;
-    --ink-2: #dcd2c8;
-    --ink-3: #aba095;
-    --line: rgb(254 248 243 / 0.11);
-    --line-strong: rgb(254 248 243 / 0.22);
-    --grid-dot: rgb(254 248 243 / 0.09);
-    --honey: #ffc412;
-    --honey-ink: #ffc412;
-    --honey-soft: #3a2e0c;
-    --violet: #ff93aa;
-    --on-violet: #1a1612;
-    --on-honey: #1a1612;
-    --success: #4fc7a8;
-    color-scheme: dark;
-  }
-}
+/* No OS-based fallback: light is the default theme for everyone (dark is opt-in via the toggle). */
 
 @theme inline {
   --color-paper: var(--paper);
@@ -1964,3 +1979,178 @@ html[data-inspect="on"] .site main * { cursor: crosshair; }
 .more-sheet a::after { display: none !important; }
 .more-sheet__h { margin: 4px 12px 6px; font: 600 10.5px/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
 .more-scrim { position: fixed; inset: 0; z-index: 55; background: rgb(0 0 0 / 0.25); border: 0; }
+
+/* ==========================================================================
+   Vibrant layer — brand colours as "tones" (coloured FigJam-like sections)
+   Any element with data-tone exposes --c (solid), --c-ink (text), --c-soft (tint), --c-on.
+   ========================================================================== */
+
+.site { --c: var(--honey); --c-ink: var(--honey-ink); --c-soft: var(--honey-soft); --c-on: var(--on-honey); }
+[data-tone="cobalt"] { --c: var(--cobalt); --c-ink: var(--cobalt-ink); --c-soft: var(--cobalt-soft); --c-on: var(--cobalt-on); }
+[data-tone="flame"] { --c: var(--flame); --c-ink: var(--flame-ink); --c-soft: var(--flame-soft); --c-on: var(--flame-on); }
+[data-tone="forest"] { --c: var(--forest); --c-ink: var(--forest-ink); --c-soft: var(--forest-soft); --c-on: var(--forest-on); }
+[data-tone="blush"] { --c: var(--blush); --c-ink: var(--blush-ink); --c-soft: var(--blush-soft); --c-on: var(--blush-on); }
+[data-tone="sun"] { --c: var(--sun); --c-ink: var(--sun-ink); --c-soft: var(--sun-soft); --c-on: var(--sun-on); }
+
+/* Section heads: coloured eyebrow chip, frame label and italic accent */
+[data-tone] > .block-head .eyebrow,
+[data-tone] .block-head .eyebrow {
+  color: var(--c-ink);
+  background: var(--c-soft);
+  padding: 5px 9px 5px 8px;
+  border-radius: 3px;
+}
+[data-tone] .eyebrow::before { background: var(--c); width: 8px; height: 8px; border-radius: 2px; }
+[data-tone] .h-section em,
+[data-tone] .page-title em { color: var(--c-ink); }
+[data-tone] > .frame-label svg,
+[data-tone] .frame-label svg { color: var(--c-ink); }
+[data-tone] > .frame-label { color: var(--c-ink); }
+
+/* Layers panel: section children pick up their section colour */
+.layer--child[data-tone] svg { color: var(--c-ink); }
+.layer--child[data-tone][data-active="true"] { background: var(--c-soft); color: var(--ink); }
+
+/* Toolbar presence avatars */
+.presence { display: none; list-style: none; margin: 0 6px 0 0; padding: 0; }
+@media (min-width: 1100px) {
+  .presence { display: flex; }
+}
+.presence__avatar {
+  width: 28px;
+  height: 28px;
+  margin-left: -7px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--c);
+  color: var(--c-on);
+  font: 600 12px/1 var(--font-sans);
+  box-shadow: 0 0 0 2px var(--chrome);
+}
+.presence__avatar:first-child { margin-left: 0; }
+
+/* Ghost collaborator cursors in the hero */
+.ghosts { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
+.ghost { position: absolute; display: none; }
+.ghost svg { display: block; width: 20px; height: 20px; filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.2)); }
+.ghost__name {
+  position: absolute;
+  left: 15px;
+  top: 16px;
+  padding: 2px 7px;
+  border-radius: 0 6px 6px 6px;
+  background: var(--c);
+  color: var(--c-on);
+  font: 600 11px/1.3 var(--font-sans);
+  white-space: nowrap;
+}
+.ghost--a { left: 34%; top: 84%; }
+.ghost--b { left: 70%; top: 18%; }
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  .ghost { display: block; }
+  .ghost--a { animation: ghost-a 16s ease-in-out 2s infinite alternate both; }
+  .ghost--b { animation: ghost-b 19s ease-in-out 5s infinite alternate both; }
+}
+@keyframes ghost-a {
+  0% { translate: 0 0; opacity: 0; }
+  8% { opacity: 1; }
+  40% { translate: 120px -40px; }
+  70% { translate: 60px 10px; }
+  100% { translate: 180px -10px; opacity: 1; }
+}
+@keyframes ghost-b {
+  0% { translate: 0 0; opacity: 0; }
+  10% { opacity: 1; }
+  45% { translate: -80px 90px; }
+  100% { translate: -30px 150px; opacity: 1; }
+}
+
+/* Hero accents */
+.hero__kicker > span:first-child { color: var(--cobalt-ink); }
+.props__tabs b { color: var(--cobalt-ink); box-shadow: inset 0 -2px 0 var(--cobalt); padding-bottom: 9px; margin-bottom: -11px; }
+
+/* "Who is Hunny?" as a blush sticky */
+.answer__q {
+  align-self: start;
+  justify-self: start;
+  padding: 18px 20px 22px;
+  background: var(--blush);
+  color: var(--blush-on);
+  border-radius: 2px;
+  rotate: -1.5deg;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.05), 0 18px 30px -20px rgb(120 30 60 / 0.55);
+  max-width: 240px;
+}
+
+/* Work cards: frame label chip + outline in the kind colour */
+.work-card__label > span:nth-child(2) {
+  padding: 3px 6px;
+  border-radius: 3px;
+  background: var(--c-soft);
+  color: var(--c-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.work-card__label svg { color: var(--c-ink); }
+@media (hover: hover) {
+  .work-card__link:hover .work-card__frame { outline-color: var(--c); }
+  .work-card__link:hover .work-card__label { color: var(--ink-3); }
+  .work-card__link:hover .work-card__label > span:nth-child(2) { background: var(--c); color: var(--c-on); }
+}
+.work-card__link:focus-visible .work-card__frame { outline-color: var(--c); }
+.work-card .tag--kind { background: var(--c-soft); color: var(--c-ink); border-color: color-mix(in oklab, var(--c) 45%, transparent); border-style: solid; }
+
+/* Multi-colour soft tags and chips */
+.tag--tone { background: var(--c-soft); color: var(--c-ink); border-color: transparent; }
+.chip--tone[data-tone] .chip__count { color: var(--c-ink); }
+.chip--tone[data-tone]::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--c); }
+.chip--tone[data-tone][aria-pressed="true"] { background: var(--c); border-color: var(--c); color: var(--c-on); }
+.chip--tone[data-tone][aria-pressed="true"]::before { background: var(--c-on); }
+.chip--tone[data-tone][aria-pressed="true"] .chip__count { color: inherit; }
+.kind-dot { color: var(--c-ink); }
+.kind-note { border-left-color: var(--cobalt); background: color-mix(in oklab, var(--cobalt-soft) 55%, var(--surface)); }
+
+/* Experience: coloured version dots */
+.history__item[data-tone] .history__dot { border-color: var(--c); background: var(--c-soft); }
+.history__item[data-tone][data-current="true"] .history__dot { background: var(--c); box-shadow: 0 0 0 4px var(--c-soft); }
+.history__item[data-tone] .history__when b { color: var(--c-ink); }
+.history__item[data-tone] .history__bullets li::before { border-color: var(--c); }
+
+/* Toolkit: each component set in its own colour */
+.sets > [data-tone] .set__box { border-color: var(--c); background: color-mix(in oklab, var(--c-soft) 45%, transparent); }
+.sets > [data-tone] .set__label, .sets > [data-tone] .set__label svg, .sets > [data-tone] .instance svg { color: var(--c-ink); }
+.core li[data-tone]::before { color: var(--c-ink); }
+
+/* FAQ numbers and open state */
+.faq details[data-tone] .faq__n { color: var(--c-ink); }
+.faq details[data-tone][open] summary::after {
+  background-color: var(--c);
+  border-color: var(--c);
+  background-image:
+    linear-gradient(var(--c-on), var(--c-on)),
+    linear-gradient(var(--c-on), var(--c-on));
+}
+.faq details[data-tone] summary:hover { color: var(--c-ink); }
+
+/* Case study */
+.cs-section[data-tone] .cs-section__h span { color: var(--c-ink); }
+.highlights li[data-tone] { border-top: 3px solid var(--c); }
+.highlights li[data-tone] svg { color: var(--c-ink); }
+.metrics div[data-tone] { border-top: 3px solid var(--c); }
+.metrics div[data-tone] dd { color: var(--c-ink); }
+.edu li .edu__kind { color: var(--cobalt-ink); }
+.edu li:nth-child(2) .edu__kind { color: var(--flame-ink); }
+.edu li:nth-child(3) .edu__kind { color: var(--forest-ink); }
+
+/* Ask-AI buttons: each fills with its own brand colour on hover */
+.ask-ai__list [data-tone] .ai-btn:hover { border-color: var(--c); background: var(--c-soft); box-shadow: 2px 2px 0 var(--c); }
+
+/* Buttons: primary stays the accent; flame offset shadow for a little energy */
+.btn:hover { box-shadow: 3px 3px 0 var(--flame); }
+.btn--ink:hover { box-shadow: 3px 3px 0 var(--sun); }
+
+/* Comment bubble in blush (brand "comment" colour) */
+.comment { background: var(--blush); color: var(--blush-on); }
+.comment__avatar { background: var(--sun); color: var(--sun-on); }
+.quote__avatar { background: var(--blush); color: var(--blush-on); }

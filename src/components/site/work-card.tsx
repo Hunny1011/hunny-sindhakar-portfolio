@@ -3,6 +3,7 @@ import Link from "next/link";
 import { KIND_LABEL, projectOrigin } from "@/lib/format";
 import type { Project } from "@/lib/types";
 import { FrameGlyph } from "./icons";
+import { KIND_TONE } from "./tones";
 
 const isMobile = (p: Project) => p.platforms.some((x) => /mobile app|ios|android/i.test(x)) && !p.platforms.some((x) => /^web app$/i.test(x));
 const isPrint = (p: Project) => p.kind === "graphic" || p.platforms.some((x) => /print/i.test(x));
@@ -90,7 +91,7 @@ export function WorkCard({
 }) {
   const H = headingLevel;
   return (
-    <article className="work-card">
+    <article className="work-card" data-tone={KIND_TONE[project.kind]}>
       <Link href={`/work/${project.slug}`} className="work-card__link">
         <span className="work-card__label" aria-hidden>
           <FrameGlyph />

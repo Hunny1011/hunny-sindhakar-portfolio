@@ -9,6 +9,7 @@ import { BehanceMark } from "@/components/site/icons";
 import { ContactNote } from "@/components/site/sections";
 import { TrackedLink } from "@/components/site/tracked-link";
 import { ViewTracker } from "@/components/site/view-tracker";
+import { KIND_TONE, toneAt } from "@/components/site/tones";
 import { GenCover } from "@/components/site/work-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getProfile, getProject, getProjects, getSettings } from "@/lib/data";
@@ -71,7 +72,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
       <ViewTracker event="view_project" params={{ slug: project.slug, kind: project.kind }} />
       <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Work", href: "/work" }, { name: project.title }]} />
 
-      <header id="overview" data-layer="Overview" className="cs-hero page-head">
+      <header id="overview" data-layer="Overview" data-tone={KIND_TONE[project.kind]} className="cs-hero page-head">
         <div>
           <p className="eyebrow">
             {KIND_LABEL[project.kind]} · {project.category}
@@ -108,8 +109,8 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         {(project.tags.length > 0 || project.external_url) && (
           <div className="flex flex-wrap items-center justify-between gap-4">
             <ul className="tags" aria-label="Tags">
-              {project.tags.map((t) => (
-                <li key={t} className="tag">
+              {project.tags.map((t, i) => (
+                <li key={t} className="tag tag--tone" data-tone={toneAt(i)}>
                   {t}
                 </li>
               ))}
@@ -133,7 +134,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
       </header>
 
       <div className="cs-body">
-        <section id="summary" data-layer="Summary" className="cs-section" aria-labelledby="summary-title">
+        <section id="summary" data-layer="Summary" data-tone="cobalt" className="cs-section" aria-labelledby="summary-title">
           <h2 id="summary-title" className="cs-section__h">
             <span>00 — Summary</span>
             {project.kind === "case-study" ? `What is ${project.title}?` : "The brief"}
@@ -142,7 +143,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         </section>
 
         {story.map((s, n) => (
-          <section key={s.key} id={s.key} data-layer={s.label} className="cs-section" aria-labelledby={`${s.key}-title`}>
+          <section key={s.key} id={s.key} data-layer={s.label} data-tone={toneAt(n + 1)} className="cs-section" aria-labelledby={`${s.key}-title`}>
             <h2 id={`${s.key}-title`} className="cs-section__h">
               <span>
                 {String(n + 1).padStart(2, "0")} — {s.label}
@@ -156,14 +157,14 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         ))}
 
         {project.highlights.length > 0 && (
-          <section id="highlights" data-layer="Highlights" className="cs-section" aria-labelledby="highlights-title">
+          <section id="highlights" data-layer="Highlights" data-tone="forest" className="cs-section" aria-labelledby="highlights-title">
             <h2 id="highlights-title" className="cs-section__h">
               <span>Highlights</span>
               What stands out
             </h2>
             <ul className="highlights">
-              {project.highlights.map((h) => (
-                <li key={h}>
+              {project.highlights.map((h, i) => (
+                <li key={h} data-tone={toneAt(i)}>
                   <Check aria-hidden />
                   {h}
                 </li>
@@ -173,14 +174,14 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         )}
 
         {project.metrics.length > 0 && (
-          <section id="metrics" data-layer="Metrics" className="cs-section" aria-labelledby="metrics-title">
+          <section id="metrics" data-layer="Metrics" data-tone="sun" className="cs-section" aria-labelledby="metrics-title">
             <h2 id="metrics-title" className="cs-section__h">
               <span>Impact</span>
               By the numbers
             </h2>
             <dl className="metrics">
-              {project.metrics.map((m) => (
-                <div key={m.label}>
+              {project.metrics.map((m, i) => (
+                <div key={m.label} data-tone={toneAt(i)}>
                   <dt>{m.label}</dt>
                   <dd>{m.value}</dd>
                 </div>
@@ -190,7 +191,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         )}
 
         {project.gallery.length > 0 && (
-          <section id="gallery" data-layer="Gallery" aria-labelledby="gallery-title">
+          <section id="gallery" data-layer="Gallery" data-tone="blush" aria-labelledby="gallery-title">
             <div className="block-head">
               <div>
                 <p className="eyebrow">Screens</p>

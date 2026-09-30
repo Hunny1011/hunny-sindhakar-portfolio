@@ -25,19 +25,17 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   viewportFit: "cover",
-  colorScheme: "light dark",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fef8f3" },
-    { media: "(prefers-color-scheme: dark)", color: "#1a1612" },
-  ],
+  colorScheme: "light",
+  themeColor: "#fef8f3",
 };
 
-// Runs before paint: applies the saved theme (or the OS preference) so there is no flash.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t}catch(e){}})()`;
+// Runs before paint so there is no flash. Light is the default for everyone;
+// dark only when the visitor has chosen it with the theme toggle (saved in localStorage).
+const themeScript = `(function(){try{var t=localStorage.getItem("theme")==="dark"?"dark":"light";document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t}catch(e){}})()`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-IN" className={`${sans.variable} ${mono.variable} ${serif.variable}`} suppressHydrationWarning>
+    <html lang="en-IN" data-theme="light" className={`${sans.variable} ${mono.variable} ${serif.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

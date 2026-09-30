@@ -6,6 +6,7 @@ import { AiGlyph, SocialIcon } from "./icons";
 import { PAGES } from "./nav";
 import { TrackedLink } from "./tracked-link";
 import { CopyEmail } from "./copy-email";
+import { toneAt } from "./tones";
 
 export function Footer({
   profile,
@@ -32,8 +33,8 @@ export function Footer({
               <p className="ask-ai__sub">Opens your assistant with a ready-made question about her work.</p>
             </div>
             <ul className="ask-ai__list">
-              {aiLinks.map((ai) => (
-                <li key={ai.id}>
+              {aiLinks.map((ai, i) => (
+                <li key={ai.id} data-tone={toneAt(i)}>
                   <TrackedLink
                     className="ai-btn"
                     href={buildAskAiUrl(ai.url_template, settings.ask_ai_prompt)}
