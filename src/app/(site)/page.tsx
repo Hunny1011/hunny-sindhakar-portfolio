@@ -123,11 +123,10 @@ export default async function HomePage() {
             <div className="props__group" aria-hidden>
               <p className="props__title">Fill</p>
               <div className="props__swatches">
-                <span className="swatch" style={{ background: "var(--honey)" }} />
-                <span className="swatch" style={{ background: "var(--ink)" }} />
-                <span className="swatch" style={{ background: "var(--paper)" }} />
-                <span className="swatch" style={{ background: "var(--violet)" }} />
-                <span className="ml-auto font-mono text-[11px] text-ink-3">honey · 100%</span>
+                {["--cobalt", "--sun", "--blush", "--forest", "--flame"].map((token) => (
+                  <span key={token} className="swatch" style={{ background: `var(${token})` }} />
+                ))}
+                <span className="ml-auto font-mono text-[11px] text-ink-3">brand · 5 fills</span>
               </div>
             </div>
           </aside>

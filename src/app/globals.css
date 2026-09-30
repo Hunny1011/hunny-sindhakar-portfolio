@@ -2,29 +2,40 @@
 
 /* ==========================================================================
    The Canvas — design tokens
-   Paper + ink neutrals, one "honey" accent, violet reserved for comments.
+   Cream + ink neutrals with a five-colour brand palette. Token names are kept from
+   the first theme: "honey" = primary accent (cobalt in light, sun in dark), "violet" = comments (blush).
    ========================================================================== */
 
 :root {
-  --paper: #f6f3ec;
-  --paper-2: #eee9df;
-  --surface: #fffdf8;
-  --surface-2: #faf7f0;
-  --chrome: #fbf9f4;
-  --ink: #1b1a17;
-  --ink-2: #45413a;
-  --ink-3: #635d53;
-  --line: rgb(27 26 23 / 0.12);
-  --line-strong: rgb(27 26 23 / 0.22);
-  --grid-dot: rgb(27 26 23 / 0.13);
-  --honey: #f2a516;
-  --honey-ink: #845500;
-  --honey-soft: #fcebc4;
-  --on-honey: #1b1a17;
-  --violet: #5e44e6;
-  --on-violet: #ffffff;
-  --success: #1f7a45;
-  --danger: #b3261e;
+  /* Brand palette — each colour has one job */
+  --cobalt: #112bac;  /* primary accent: selection, focus, links, main buttons */
+  --sun: #ffc412;     /* sticky note, highlighter, dark-mode accent */
+  --blush: #ff93aa;   /* comments */
+  --forest: #0d5f4f;  /* availability, case-study tags */
+  --flame: #ff520d;   /* collaborator cursor, small accents */
+  --cream: #fef8f3;
+  --night: #1a1612;
+  --on-bright: #1a1612;
+
+  --paper: #f7eee5;
+  --paper-2: #efe3d7;
+  --surface: #fef8f3;
+  --surface-2: #fbf1e8;
+  --chrome: #fef8f3;
+  --ink: #1a1612;
+  --ink-2: #463e37;
+  --ink-3: #675d54;
+  --line: rgb(26 22 18 / 0.12);
+  --line-strong: rgb(26 22 18 / 0.22);
+  --grid-dot: rgb(26 22 18 / 0.13);
+  --honey: #112bac;
+  --honey-ink: #112bac;
+  --honey-soft: #e2e5f5;
+  --on-honey: #fef8f3;
+  --violet: #ff93aa;
+  --on-violet: #1a1612;
+  --success: #0d5f4f;
+  --danger: #b53a0a;
   --shadow-frame: 0 1px 0 rgb(27 26 23 / 0.04), 0 10px 30px -18px rgb(27 26 23 / 0.35);
   --shadow-lift: 0 2px 0 rgb(27 26 23 / 0.04), 0 22px 40px -22px rgb(27 26 23 / 0.45);
 
@@ -53,24 +64,25 @@
 }
 
 [data-theme="dark"] {
-  --paper: #141311;
-  --paper-2: #1b1a17;
-  --surface: #1e1d1a;
-  --surface-2: #23221e;
-  --chrome: #181715;
-  --ink: #f2ede3;
-  --ink-2: #d1cabd;
-  --ink-3: #a79f91;
-  --line: rgb(242 237 227 / 0.11);
-  --line-strong: rgb(242 237 227 / 0.22);
-  --grid-dot: rgb(242 237 227 / 0.09);
-  --honey: #f5b63c;
-  --honey-ink: #f5b63c;
-  --honey-soft: #3a2c10;
-  --on-honey: #1b1a17;
-  --violet: #6a52f2;
-  --success: #5cc98a;
-  --danger: #ff8a80;
+  --paper: #1a1612;
+  --paper-2: #221d18;
+  --surface: #241e19;
+  --surface-2: #2a231d;
+  --chrome: #1f1a15;
+  --ink: #fef8f3;
+  --ink-2: #dcd2c8;
+  --ink-3: #aba095;
+  --line: rgb(254 248 243 / 0.11);
+  --line-strong: rgb(254 248 243 / 0.22);
+  --grid-dot: rgb(254 248 243 / 0.09);
+  --honey: #ffc412;
+  --honey-ink: #ffc412;
+  --honey-soft: #3a2e0c;
+  --on-honey: #1a1612;
+  --violet: #ff93aa;
+  --on-violet: #1a1612;
+  --success: #4fc7a8;
+  --danger: #ff7a45;
   --shadow-frame: 0 1px 0 rgb(0 0 0 / 0.3), 0 14px 34px -20px rgb(0 0 0 / 0.8);
   --shadow-lift: 0 2px 0 rgb(0 0 0 / 0.3), 0 26px 44px -22px rgb(0 0 0 / 0.9);
   color-scheme: dark;
@@ -79,21 +91,24 @@
 /* No-JS fallback: follow the OS until the theme script sets data-theme. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --paper: #141311;
-    --paper-2: #1b1a17;
-    --surface: #1e1d1a;
-    --surface-2: #23221e;
-    --chrome: #181715;
-    --ink: #f2ede3;
-    --ink-2: #d1cabd;
-    --ink-3: #a79f91;
-    --line: rgb(242 237 227 / 0.11);
-    --line-strong: rgb(242 237 227 / 0.22);
-    --grid-dot: rgb(242 237 227 / 0.09);
-    --honey: #f5b63c;
-    --honey-ink: #f5b63c;
-    --honey-soft: #3a2c10;
-    --violet: #6a52f2;
+    --paper: #1a1612;
+    --paper-2: #221d18;
+    --surface: #241e19;
+    --surface-2: #2a231d;
+    --chrome: #1f1a15;
+    --ink: #fef8f3;
+    --ink-2: #dcd2c8;
+    --ink-3: #aba095;
+    --line: rgb(254 248 243 / 0.11);
+    --line-strong: rgb(254 248 243 / 0.22);
+    --grid-dot: rgb(254 248 243 / 0.09);
+    --honey: #ffc412;
+    --honey-ink: #ffc412;
+    --honey-soft: #3a2e0c;
+    --violet: #ff93aa;
+    --on-violet: #1a1612;
+    --on-honey: #1a1612;
+    --success: #4fc7a8;
     color-scheme: dark;
   }
 }
@@ -140,8 +155,8 @@ body {
 }
 
 .site ::selection {
-  background: var(--honey);
-  color: var(--on-honey);
+  background: var(--sun);
+  color: var(--on-bright);
 }
 
 .site :focus-visible {
@@ -224,8 +239,8 @@ body {
   height: 28px;
   display: grid;
   place-items: center;
-  background: var(--honey);
-  color: var(--on-honey);
+  background: var(--sun);
+  color: var(--on-bright);
   font: italic 400 17px/1 var(--font-serif);
   border-radius: 3px;
   flex: none;
@@ -349,7 +364,7 @@ body {
   flex: none;
 }
 .status-pill[data-status="busy"] .status-pill__dot { background: var(--ink-3); box-shadow: none; }
-.status-pill[data-status="freelance"] .status-pill__dot { background: var(--honey); }
+.status-pill[data-status="freelance"] .status-pill__dot { background: var(--flame); }
 .toolbar .status-pill { display: none; }
 @media (min-width: 1280px) {
   .toolbar .status-pill { display: inline-flex; }
@@ -667,7 +682,7 @@ body {
 .btn:disabled { opacity: 0.55; cursor: not-allowed; translate: none; box-shadow: none; }
 .btn--honey { --btn-bg: var(--honey); --btn-fg: var(--on-honey); --btn-bd: var(--honey); }
 .btn--ink { --btn-bg: var(--ink); --btn-fg: var(--paper); --btn-bd: var(--ink); }
-.btn--ink:hover { box-shadow: 3px 3px 0 var(--honey); }
+.btn--ink:hover { box-shadow: 3px 3px 0 var(--flame); }
 .btn--sm { min-height: 40px; padding: 0 14px; }
 
 .tag {
@@ -683,7 +698,7 @@ body {
   color: var(--ink-2);
   white-space: nowrap;
 }
-.tag--kind[data-kind="case-study"] { border-color: color-mix(in oklab, var(--honey) 55%, transparent); color: var(--honey-ink); background: var(--honey-soft); }
+.tag--kind[data-kind="case-study"] { border-color: color-mix(in oklab, var(--success) 50%, transparent); color: var(--success); background: color-mix(in oklab, var(--success) 12%, transparent); }
 .tag--kind[data-kind="concept"] { border-style: dashed; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
 
@@ -828,8 +843,8 @@ body {
   top: 18px;
   padding: 3px 8px;
   border-radius: 0 6px 6px 6px;
-  background: var(--honey);
-  color: var(--on-honey);
+  background: var(--flame);
+  color: var(--on-bright);
   font: 600 11.5px/1.2 var(--font-sans);
   white-space: nowrap;
 }
@@ -860,8 +875,9 @@ body {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--honey);
-  color: var(--on-honey);
+  background: var(--sun);
+  color: var(--on-bright);
+  box-shadow: 0 0 0 2px var(--cream);
   font: italic 400 14px/1 var(--font-serif);
 }
 .comment__who { display: block; font: 600 11px/1.3 var(--font-mono); opacity: 0.85; margin-bottom: 2px; }
@@ -870,7 +886,7 @@ body {
   .selection { display: block; padding: 0; margin: 0; }
   .selection__box, .selection__name, .selection__dims, .handle { display: none; }
   .hero__title .hl {
-    background: linear-gradient(transparent 62%, color-mix(in oklab, var(--honey) 55%, transparent) 62%);
+    background: linear-gradient(transparent 62%, color-mix(in oklab, var(--sun) 70%, transparent) 62%);
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }
@@ -1075,7 +1091,7 @@ body {
 
 /* Typographic generated cover (for NDA work without images) */
 .gen-cover {
-  --accent: #f2a516;
+  --accent: #112bac;
   position: absolute;
   inset: 0;
   display: flex;
@@ -1362,10 +1378,10 @@ body {
 .sticky-note {
   position: relative;
   padding: clamp(28px, 5vw, 64px);
-  background: var(--honey);
-  color: var(--on-honey);
+  background: var(--sun);
+  color: var(--on-bright);
   border-radius: 2px;
-  box-shadow: 0 1px 0 rgb(0 0 0 / 0.06), 0 30px 50px -30px rgb(90 60 0 / 0.55);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.06), 0 30px 50px -30px rgb(120 80 0 / 0.55);
   overflow: hidden;
 }
 .sticky-note::after {
@@ -1387,11 +1403,11 @@ body {
 }
 .sticky-note__title em { font-style: italic; }
 .sticky-note__row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(24px, 3vw, 40px); align-items: center; }
-.sticky-note .btn { --btn-bg: var(--on-honey); --btn-fg: #fbf6ea; --btn-bd: var(--on-honey); }
-.sticky-note .btn:hover { box-shadow: 3px 3px 0 #fff7e2; }
-.sticky-note .btn--line { --btn-bg: transparent; --btn-fg: var(--on-honey); --btn-bd: rgb(27 26 23 / 0.4); }
-.sticky-note .status-pill { background: rgb(255 255 255 / 0.45); border-color: rgb(27 26 23 / 0.2); color: #1b1a17; }
-.sticky-note :focus-visible { outline-color: var(--on-honey); }
+.sticky-note .btn { --btn-bg: var(--night); --btn-fg: var(--cream); --btn-bd: var(--night); }
+.sticky-note .btn:hover { box-shadow: 3px 3px 0 var(--flame); }
+.sticky-note .btn--line { --btn-bg: transparent; --btn-fg: var(--night); --btn-bd: rgb(26 22 18 / 0.4); }
+.sticky-note .status-pill { background: rgb(255 255 255 / 0.45); border-color: rgb(26 22 18 / 0.2); color: var(--night); }
+.sticky-note :focus-visible { outline-color: var(--night); }
 
 /* ==========================================================================
    Footer — Ask AI
@@ -1616,7 +1632,8 @@ body {
   place-items: center;
   overflow: hidden;
   background:
-    radial-gradient(90% 70% at 20% 10%, color-mix(in oklab, var(--honey) 45%, transparent), transparent 70%),
+    radial-gradient(90% 70% at 20% 10%, color-mix(in oklab, var(--sun) 55%, transparent), transparent 70%),
+    radial-gradient(70% 60% at 90% 95%, color-mix(in oklab, var(--blush) 55%, transparent), transparent 70%),
     var(--surface);
   container-type: inline-size;
 }
@@ -1808,25 +1825,25 @@ body {
 
 .inspect-layer { position: fixed; inset: 0; z-index: 70; pointer-events: none; }
 .inspect-layer [data-part] { position: fixed; pointer-events: none; }
-.inspect-margin { background: rgb(242 165 22 / 0.16); outline: 1px dashed rgb(242 165 22 / 0.7); }
-.inspect-padding { background: rgb(94 180 120 / 0.2); }
-.inspect-box { outline: 1.5px solid #f2a516; }
+.inspect-margin { background: rgb(255 82 13 / 0.14); outline: 1px dashed rgb(255 82 13 / 0.7); }
+.inspect-padding { background: rgb(13 95 79 / 0.2); }
+.inspect-box { outline: 1.5px solid #112bac; box-shadow: 0 0 0 1px rgb(254 248 243 / 0.6); }
 .inspect-tip {
   max-width: 280px;
   padding: 10px 12px;
   border-radius: 6px;
-  background: #1b1a17;
-  color: #f2ede3;
+  background: #1a1612;
+  color: #fef8f3;
   font: 500 11.5px/1.55 var(--font-mono);
   box-shadow: 0 12px 30px -10px rgb(0 0 0 / 0.5);
 }
-.inspect-tip b { color: #f5b63c; font-weight: 600; }
-.inspect-tip i { font-style: normal; color: #a79f91; }
+.inspect-tip b { color: #ffc412; font-weight: 600; }
+.inspect-tip i { font-style: normal; color: #aba095; }
 .inspect-tip .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 5px; border: 1px solid rgb(255 255 255 / 0.3); }
 .inspect-dim {
   padding: 2px 5px;
-  background: #f2a516;
-  color: #1b1a17;
+  background: #112bac;
+  color: #fef8f3;
   font: 600 10.5px/1.2 var(--font-mono);
   border-radius: 2px;
   white-space: nowrap;
@@ -1842,13 +1859,13 @@ body {
   gap: 10px;
   padding: 8px 10px 8px 14px;
   border-radius: 6px;
-  background: #1b1a17;
-  color: #f2ede3;
+  background: #1a1612;
+  color: #fef8f3;
   font: 500 12px/1 var(--font-mono);
   box-shadow: var(--shadow-lift);
   pointer-events: auto;
 }
-.inspect-badge kbd { padding: 3px 6px; border-radius: 3px; background: #f2a516; color: #1b1a17; font: inherit; }
+.inspect-badge kbd { padding: 3px 6px; border-radius: 3px; background: #ffc412; color: #1a1612; font: inherit; }
 .inspect-badge button { min-height: 30px; padding: 0 10px; border: 1px solid rgb(255 255 255 / 0.2); border-radius: 4px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
 html[data-inspect="on"] .site main * { cursor: crosshair; }
 

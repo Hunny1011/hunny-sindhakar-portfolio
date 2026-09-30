@@ -50,7 +50,7 @@ export function GenCover({ project, headingLevel = "p" }: { project: Project; he
   const Title = headingLevel;
   const nda = project.kind === "case-study" && project.gallery.length === 0;
   return (
-    <div className="gen-cover" style={{ "--accent": project.accent ?? "#f2a516" } as React.CSSProperties}>
+    <div className="gen-cover" style={{ "--accent": project.accent ?? "#112bac" } as React.CSSProperties}>
       <div className="gen-cover__top">
         <span>{project.category}</span>
         <span>{project.platforms.join(" + ")}</span>

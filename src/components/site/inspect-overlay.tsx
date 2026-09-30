@@ -16,7 +16,8 @@ type Reading = {
   radius: string;
 };
 
-const TOKENS = ["--ink", "--ink-2", "--ink-3", "--paper", "--paper-2", "--surface", "--surface-2", "--chrome", "--honey", "--honey-ink", "--honey-soft", "--on-honey", "--violet", "--on-violet"];
+// Brand tokens first so a colour is reported by its brand name when it matches several tokens.
+const TOKENS = ["--cobalt", "--sun", "--blush", "--forest", "--flame", "--cream", "--night", "--ink", "--ink-2", "--ink-3", "--paper", "--paper-2", "--surface", "--surface-2", "--chrome", "--honey", "--honey-ink", "--honey-soft", "--on-honey", "--violet", "--on-violet"];
 
 function toHex(color: string) {
   const m = color.match(/rgba?\(([^)]+)\)/);
