@@ -21,15 +21,19 @@ export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
+const KIND_TITLE = { "case-study": "UI/UX case study", concept: "UI/UX concept", graphic: "graphic design" } as const;
+
 export async function generateMetadata({ params }: PageProps<"/work/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProject(slug);
   if (!project) return {};
   return buildMetadata({
-    title: project.seo_title ?? `${project.title} — ${project.subtitle ?? project.category}`,
+    title: project.seo_title ?? `${project.title} — ${KIND_TITLE[project.kind]}`,
+    socialTitle: `${project.title} — ${project.subtitle ?? project.category}`,
     description: project.seo_description ?? project.summary,
     path: `/work/${project.slug}`,
     type: "article",
+    image: false, // this route has its own opengraph-image
   });
 }
 

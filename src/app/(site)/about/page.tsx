@@ -12,7 +12,8 @@ import { breadcrumbJsonLd, buildMetadata, personJsonLd, profilePageJsonLd } from
 export async function generateMetadata() {
   const profile = await getProfile();
   return buildMetadata({
-    title: `About ${profile.name} — ${profile.role}`,
+    title: { absolute: `About ${profile.name} — UI/UX Designer, ${profile.location.split(",")[0]}` },
+    socialTitle: `About ${profile.name} — ${profile.role}`,
     description: profile.answer_block.slice(0, 158),
     path: "/about",
     type: "profile",

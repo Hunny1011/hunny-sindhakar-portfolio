@@ -23,6 +23,7 @@ async function fonts() {
 
 const HONEY = "#112bac"; // cobalt: selection box
 const SUN = "#ffc412"; // monogram tile
+const BRAND = ["#112bac", "#ffc412", "#ff93aa", "#0d5f4f", "#ff520d"];
 const INK = "#1a1612";
 const PAPER = "#fef8f3";
 
@@ -60,7 +61,10 @@ export async function canvasCard({
           position: "relative",
         }}
       >
-        <div style={{ position: "absolute", right: 0, top: 0, width: 520, height: 630, display: "flex", background: `radial-gradient(circle at 100% 0%, ${accent}55, transparent 70%)` }} />
+        {/* Brand-colour glows. Fade to the same colour at 0 alpha: "transparent" is black and greys the edge. */}
+        <div style={{ position: "absolute", right: -120, top: -160, width: 520, height: 520, display: "flex", borderRadius: 260, background: `radial-gradient(circle, ${SUN}cc, ${SUN}00 68%)` }} />
+        <div style={{ position: "absolute", right: 120, top: 210, width: 420, height: 420, display: "flex", borderRadius: 210, background: `radial-gradient(circle, ${BRAND[2]}aa, ${BRAND[2]}00 68%)` }} />
+        <div style={{ position: "absolute", right: -140, bottom: -200, width: 520, height: 520, display: "flex", borderRadius: 260, background: `radial-gradient(circle, ${accent}88, ${accent}00 68%)` }} />
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 22, color: "#675d54" }}>
           <div style={{ display: "flex", width: 44, height: 44, background: SUN, alignItems: "center", justifyContent: "center", fontFamily: "Serif", fontStyle: "italic", fontSize: 32, color: INK, borderRadius: 4 }}>
             H
@@ -83,7 +87,11 @@ export async function canvasCard({
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#463e37" }}>
           <span>{footer}</span>
-          <span style={{ display: "flex", background: accent, width: 16, height: 16, borderRadius: 8, marginTop: 4 }} />
+          <span style={{ display: "flex", gap: 8, marginTop: 4 }}>
+            {BRAND.map((c) => (
+              <span key={c} style={{ display: "flex", background: c, width: 18, height: 18, borderRadius: 4 }} />
+            ))}
+          </span>
         </div>
       </div>
     ),

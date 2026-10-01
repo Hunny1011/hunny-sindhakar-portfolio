@@ -3,24 +3,36 @@ import { SITE_URL, absoluteUrl } from "./site";
 import type { Education, Experience, Faq, Post, Profile, Project, SiteSettings, SocialLink } from "./types";
 
 // Page metadata with canonical URL, Open Graph and Twitter cards.
-// OG images come from the opengraph-image.tsx file conventions, so none are set here.
+// `title` goes through the root template ("%s · Hunny Sindhakar"); `socialTitle` is used for share cards.
+// A page-level `openGraph` object replaces the parent's in Next.js (no deep merge), so the default share
+// image is set explicitly here. Pages with their own opengraph-image file pass `image: false`.
+const DEFAULT_OG_IMAGE = { url: "/opengraph-image", width: 1200, height: 630, alt: "Hunny Sindhakar — UI/UX Designer, Ahmedabad" };
+
 export function buildMetadata({
   title,
   description,
   path,
   type = "website",
+  socialTitle,
+  image = DEFAULT_OG_IMAGE,
 }: {
-  title: string;
+  /** A plain string uses the root title template; `{ absolute }` skips it. */
+  title: string | { absolute: string };
   description: string;
   path: string;
   type?: "website" | "article" | "profile";
+  socialTitle?: string;
+  image?: typeof DEFAULT_OG_IMAGE | false;
 }): Metadata {
+  const shareTitle = socialTitle ?? (typeof title === "string" ? title : title.absolute);
+  // Omit the key entirely when false: even `images: undefined` would hide a route's own opengraph-image.
+  const images = image ? { images: [image] } : {};
   return {
     title,
     description,
     alternates: { canonical: absoluteUrl(path) },
-    openGraph: { title, description, url: absoluteUrl(path), type, siteName: "Hunny Sindhakar", locale: "en_IN" },
-    twitter: { card: "summary_large_image", title, description },
+    openGraph: { title: shareTitle, description, url: absoluteUrl(path), type, siteName: "Hunny Sindhakar", locale: "en_IN", ...images },
+    twitter: { card: "summary_large_image", title: shareTitle, description, ...images },
   };
 }
 
