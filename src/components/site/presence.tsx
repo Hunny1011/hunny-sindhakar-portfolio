@@ -12,8 +12,10 @@ export function PresenceStack() {
   return (
     <ul className="presence" aria-label="Also on this canvas: a recruiter, a developer and a PM (illustrative)">
       {PEOPLE.map((p) => (
-        <li key={p.initial} className="presence__avatar" data-tone={p.tone} title={p.name}>
-          <span aria-hidden>{p.initial}</span>
+        <li key={p.initial} className="presence__item" data-tone={p.tone}>
+          <span className="presence__avatar" tabIndex={0} role="img" aria-label={p.name} data-name={p.name}>
+            <span aria-hidden>{p.initial}</span>
+          </span>
         </li>
       ))}
     </ul>

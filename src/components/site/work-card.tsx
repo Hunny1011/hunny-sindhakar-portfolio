@@ -91,7 +91,7 @@ export function WorkCard({
 }) {
   const H = headingLevel;
   return (
-    <article className="work-card" data-tone={KIND_TONE[project.kind]}>
+    <article className="work-card" data-tone={KIND_TONE[project.kind]} style={{ "--acc": project.accent ?? undefined } as React.CSSProperties}>
       <Link href={`/work/${project.slug}`} className="work-card__link">
         <span className="work-card__label" aria-hidden>
           <FrameGlyph />

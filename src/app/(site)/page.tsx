@@ -62,7 +62,6 @@ export default async function HomePage() {
       <Block id="hero" tone="cobalt" layer="Hero">
         <FrameLabel name="Hero" sizeSlot={<LiveSize target="hero-frame" />} />
         <div className="frame hero" id="hero-frame">
-          <GhostCursors />
           <div className="min-w-0">
             <p className="hero__kicker">
               <span>{profile.name}</span>
@@ -89,49 +88,52 @@ export default async function HomePage() {
               </span>
             </div>
           </div>
-          <aside className="props" aria-label="Quick facts">
-            <div className="props__tabs" aria-hidden>
-              <b>Design</b>
-              <span>Prototype</span>
-              <span>Inspect</span>
-            </div>
-            <div className="props__group">
-              <h2 className="props__title">Layer</h2>
-              <dl>
-                <dt>Role</dt>
-                <dd>{profile.role}</dd>
-                {profile.company && (
-                  <>
-                    <dt>Studio</dt>
-                    <dd>{profile.company}</dd>
-                  </>
-                )}
-                <dt>Based in</dt>
-                <dd>
-                  {profile.location}, {profile.country}
-                </dd>
-                {since && (
-                  <>
-                    <dt>Since</dt>
-                    <dd>{since}</dd>
-                  </>
-                )}
-              </dl>
-            </div>
-            <div className="props__group">
-              <h2 className="props__title">Languages</h2>
-              <p className="m-0 text-[12.5px] font-medium leading-relaxed">{profile.languages.join(" · ")}</p>
-            </div>
-            <div className="props__group" aria-hidden>
-              <p className="props__title">Fill</p>
-              <div className="props__swatches">
-                {["--cobalt", "--sun", "--blush", "--forest", "--flame"].map((token) => (
-                  <span key={token} className="swatch" style={{ background: `var(${token})` }} />
-                ))}
-                <span className="ml-auto font-mono text-[11px] text-ink-3">brand · 5 fills</span>
+          <div className="hero__side">
+            <GhostCursors />
+            <aside className="props" aria-label="Quick facts">
+              <div className="props__tabs" aria-hidden>
+                <b>Design</b>
+                <span>Prototype</span>
+                <span>Inspect</span>
               </div>
-            </div>
-          </aside>
+              <div className="props__group">
+                <h2 className="props__title">Layer</h2>
+                <dl>
+                  <dt>Role</dt>
+                  <dd>{profile.role}</dd>
+                  {profile.company && (
+                    <>
+                      <dt>Studio</dt>
+                      <dd>{profile.company}</dd>
+                    </>
+                  )}
+                  <dt>Based in</dt>
+                  <dd>
+                    {profile.location}, {profile.country}
+                  </dd>
+                  {since && (
+                    <>
+                      <dt>Since</dt>
+                      <dd>{since}</dd>
+                    </>
+                  )}
+                </dl>
+              </div>
+              <div className="props__group">
+                <h2 className="props__title">Languages</h2>
+                <p className="m-0 text-[12.5px] font-medium leading-relaxed">{profile.languages.join(" · ")}</p>
+              </div>
+              <div className="props__group" aria-hidden>
+                <p className="props__title">Fill</p>
+                <div className="props__swatches">
+                  {["--cobalt", "--sun", "--blush", "--forest", "--flame"].map((token) => (
+                    <span key={token} className="swatch" style={{ background: `var(${token})` }} />
+                  ))}
+                  <span className="ml-auto font-mono text-[11px] text-ink-3">brand · 5 fills</span>
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
       </Block>
 
