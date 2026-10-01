@@ -5,6 +5,7 @@ import { Board } from "@/components/site/board";
 import { Block, BlockHead, FrameLabel } from "@/components/site/frame";
 import { HeroSelection } from "@/components/site/hero-selection";
 import { LiveSize } from "@/components/site/live-size";
+import { GhostCursors } from "@/components/site/presence";
 import { ContactNote, CoreSkills, ExperienceList, FaqList, SkillSets } from "@/components/site/sections";
 import { Statement } from "@/components/site/statement";
 import { StatusPill } from "@/components/site/status-pill";
@@ -58,7 +59,7 @@ export default async function HomePage() {
     <>
       <JsonLd data={[personJsonLd(profile, socials, experiences, education), websiteJsonLd(settings), ...(faqs.length ? [faqJsonLd(faqs)] : [])]} />
 
-      <Block id="hero" layer="Hero">
+      <Block id="hero" tone="cobalt" layer="Hero">
         <FrameLabel name="Hero" sizeSlot={<LiveSize target="hero-frame" />} />
         <div className="frame hero" id="hero-frame">
           <div className="min-w-0">
@@ -87,54 +88,56 @@ export default async function HomePage() {
               </span>
             </div>
           </div>
-          <aside className="props" aria-label="Quick facts">
-            <div className="props__tabs" aria-hidden>
-              <b>Design</b>
-              <span>Prototype</span>
-              <span>Inspect</span>
-            </div>
-            <div className="props__group">
-              <h2 className="props__title">Layer</h2>
-              <dl>
-                <dt>Role</dt>
-                <dd>{profile.role}</dd>
-                {profile.company && (
-                  <>
-                    <dt>Studio</dt>
-                    <dd>{profile.company}</dd>
-                  </>
-                )}
-                <dt>Based in</dt>
-                <dd>
-                  {profile.location}, {profile.country}
-                </dd>
-                {since && (
-                  <>
-                    <dt>Since</dt>
-                    <dd>{since}</dd>
-                  </>
-                )}
-              </dl>
-            </div>
-            <div className="props__group">
-              <h2 className="props__title">Languages</h2>
-              <p className="m-0 text-[12.5px] font-medium leading-relaxed">{profile.languages.join(" · ")}</p>
-            </div>
-            <div className="props__group" aria-hidden>
-              <p className="props__title">Fill</p>
-              <div className="props__swatches">
-                <span className="swatch" style={{ background: "var(--honey)" }} />
-                <span className="swatch" style={{ background: "var(--ink)" }} />
-                <span className="swatch" style={{ background: "var(--paper)" }} />
-                <span className="swatch" style={{ background: "var(--violet)" }} />
-                <span className="ml-auto font-mono text-[11px] text-ink-3">honey · 100%</span>
+          <div className="hero__side">
+            <GhostCursors />
+            <aside className="props" aria-label="Quick facts">
+              <div className="props__tabs" aria-hidden>
+                <b>Design</b>
+                <span>Prototype</span>
+                <span>Inspect</span>
               </div>
-            </div>
-          </aside>
+              <div className="props__group">
+                <h2 className="props__title">Layer</h2>
+                <dl>
+                  <dt>Role</dt>
+                  <dd>{profile.role}</dd>
+                  {profile.company && (
+                    <>
+                      <dt>Studio</dt>
+                      <dd>{profile.company}</dd>
+                    </>
+                  )}
+                  <dt>Based in</dt>
+                  <dd>
+                    {profile.location}, {profile.country}
+                  </dd>
+                  {since && (
+                    <>
+                      <dt>Since</dt>
+                      <dd>{since}</dd>
+                    </>
+                  )}
+                </dl>
+              </div>
+              <div className="props__group">
+                <h2 className="props__title">Languages</h2>
+                <p className="m-0 text-[12.5px] font-medium leading-relaxed">{profile.languages.join(" · ")}</p>
+              </div>
+              <div className="props__group" aria-hidden>
+                <p className="props__title">Fill</p>
+                <div className="props__swatches">
+                  {["--cobalt", "--sun", "--blush", "--forest", "--flame"].map((token) => (
+                    <span key={token} className="swatch" style={{ background: `var(${token})` }} />
+                  ))}
+                  <span className="ml-auto font-mono text-[11px] text-ink-3">brand · 5 fills</span>
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
       </Block>
 
-      <Block id="who" layer="Who is Hunny">
+      <Block id="who" tone="blush" layer="Who is Hunny">
         <div className="answer">
           <h2 id="who-title" className="answer__q">
             Who is {profile.name}?
@@ -152,7 +155,7 @@ export default async function HomePage() {
       </Block>
 
       {board.length > 0 && (
-        <Block id="work" layer="Selected work">
+        <Block id="work" tone="cobalt" layer="Selected work">
           <BlockHead
             id="work"
             eyebrow="01 — Selected work"
@@ -183,7 +186,7 @@ export default async function HomePage() {
       )}
 
       {experiences.length > 0 && (
-        <Block id="experience" layer="Experience">
+        <Block id="experience" tone="flame" layer="Experience">
           <BlockHead
             id="experience"
             eyebrow="02 — Version history"
@@ -204,7 +207,7 @@ export default async function HomePage() {
       )}
 
       {(skills.length > 0 || profile.core_skills.length > 0) && (
-        <Block id="toolkit" layer="Toolkit">
+        <Block id="toolkit" tone="forest" layer="Toolkit">
           <BlockHead
             id="toolkit"
             eyebrow="03 — Toolkit"
@@ -227,7 +230,7 @@ export default async function HomePage() {
       )}
 
       {posts.length > 0 && (
-        <Block id="writing" layer="Writing">
+        <Block id="writing" tone="blush" layer="Writing">
           <BlockHead
             id="writing"
             eyebrow="04 — Writing"
@@ -248,7 +251,7 @@ export default async function HomePage() {
       )}
 
       {testimonials.length > 0 && (
-        <Block id="comments" layer="Comments">
+        <Block id="comments" tone="sun" layer="Comments">
           <BlockHead id="comments" eyebrow="Comments" title={<>Kind words, <em>left on the canvas</em></>} />
           <div className="quotes">
             {testimonials.map((t) => (
@@ -272,7 +275,7 @@ export default async function HomePage() {
       )}
 
       {faqs.length > 0 && (
-        <Block id="faq" layer="FAQ">
+        <Block id="faq" tone="sun" layer="FAQ">
           <BlockHead
             id="faq"
             eyebrow="05 — FAQ"

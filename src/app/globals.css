@@ -2,29 +2,57 @@
 
 /* ==========================================================================
    The Canvas — design tokens
-   Paper + ink neutrals, one "honey" accent, violet reserved for comments.
+   Cream + ink neutrals with a five-colour brand palette. Token names are kept from
+   the first theme: "honey" = primary accent (cobalt in light, sun in dark), "violet" = comments (blush).
    ========================================================================== */
 
 :root {
-  --paper: #f6f3ec;
-  --paper-2: #eee9df;
-  --surface: #fffdf8;
-  --surface-2: #faf7f0;
-  --chrome: #fbf9f4;
-  --ink: #1b1a17;
-  --ink-2: #45413a;
-  --ink-3: #635d53;
-  --line: rgb(27 26 23 / 0.12);
-  --line-strong: rgb(27 26 23 / 0.22);
-  --grid-dot: rgb(27 26 23 / 0.13);
-  --honey: #f2a516;
-  --honey-ink: #845500;
-  --honey-soft: #fcebc4;
-  --on-honey: #1b1a17;
-  --violet: #5e44e6;
-  --on-violet: #ffffff;
-  --success: #1f7a45;
-  --danger: #b3261e;
+  /* Brand palette (client hexes). Each colour also has:
+     -ink  = text-safe shade on cream/soft fills (AA), -soft = tint for fills,
+     -on   = text colour to use on top of the solid colour. */
+  --cobalt: #112bac;
+  --cobalt-ink: #112bac;
+  --cobalt-soft: #e3e6f7;
+  --cobalt-on: #fef8f3;
+  --sun: #ffc412;
+  --sun-ink: #7a5600;
+  --sun-soft: #fff0c2;
+  --sun-on: #1a1612;
+  --blush: #ff93aa;
+  --blush-ink: #a3214a;
+  --blush-soft: #ffe3e9;
+  --blush-on: #1a1612;
+  --forest: #0d5f4f;
+  --forest-ink: #0d5f4f;
+  --forest-soft: #d9ece7;
+  --forest-on: #fef8f3;
+  --flame: #ff520d;
+  --flame-ink: #b83a06;
+  --flame-soft: #ffe1d3;
+  --flame-on: #1a1612;
+  --cream: #fef8f3;
+  --night: #1a1612;
+  --on-bright: #1a1612;
+
+  --paper: #f7eee5;
+  --paper-2: #efe3d7;
+  --surface: #fef8f3;
+  --surface-2: #fbf1e8;
+  --chrome: #fef8f3;
+  --ink: #1a1612;
+  --ink-2: #463e37;
+  --ink-3: #675d54;
+  --line: rgb(26 22 18 / 0.12);
+  --line-strong: rgb(26 22 18 / 0.22);
+  --grid-dot: rgb(26 22 18 / 0.13);
+  --honey: #112bac;
+  --honey-ink: #112bac;
+  --honey-soft: #e2e5f5;
+  --on-honey: #fef8f3;
+  --violet: #ff93aa;
+  --on-violet: #1a1612;
+  --success: #0d5f4f;
+  --danger: #b53a0a;
   --shadow-frame: 0 1px 0 rgb(27 26 23 / 0.04), 0 10px 30px -18px rgb(27 26 23 / 0.35);
   --shadow-lift: 0 2px 0 rgb(27 26 23 / 0.04), 0 22px 40px -22px rgb(27 26 23 / 0.45);
 
@@ -53,50 +81,52 @@
 }
 
 [data-theme="dark"] {
-  --paper: #141311;
-  --paper-2: #1b1a17;
-  --surface: #1e1d1a;
-  --surface-2: #23221e;
-  --chrome: #181715;
-  --ink: #f2ede3;
-  --ink-2: #d1cabd;
-  --ink-3: #a79f91;
-  --line: rgb(242 237 227 / 0.11);
-  --line-strong: rgb(242 237 227 / 0.22);
-  --grid-dot: rgb(242 237 227 / 0.09);
-  --honey: #f5b63c;
-  --honey-ink: #f5b63c;
-  --honey-soft: #3a2c10;
-  --on-honey: #1b1a17;
-  --violet: #6a52f2;
-  --success: #5cc98a;
-  --danger: #ff8a80;
+  /* Brighter, same-hue variants so every brand colour reads on night (all AA, see report). */
+  --cobalt: #8fa0ff;
+  --cobalt-ink: #9fb0ff;
+  --cobalt-soft: #232a5c;
+  --cobalt-on: #1a1612;
+  --sun: #ffc412;
+  --sun-ink: #ffd04a;
+  --sun-soft: #3d300a;
+  --sun-on: #1a1612;
+  --blush: #ff93aa;
+  --blush-ink: #ffa3b7;
+  --blush-soft: #45202a;
+  --blush-on: #1a1612;
+  --forest: #4fd1ae;
+  --forest-ink: #5fdcb8;
+  --forest-soft: #123a31;
+  --forest-on: #1a1612;
+  --flame: #ff7a45;
+  --flame-ink: #ff8f5e;
+  --flame-soft: #43210f;
+  --flame-on: #1a1612;
+  --paper: #1a1612;
+  --paper-2: #221d18;
+  --surface: #241e19;
+  --surface-2: #2a231d;
+  --chrome: #1f1a15;
+  --ink: #fef8f3;
+  --ink-2: #dcd2c8;
+  --ink-3: #aba095;
+  --line: rgb(254 248 243 / 0.11);
+  --line-strong: rgb(254 248 243 / 0.22);
+  --grid-dot: rgb(254 248 243 / 0.09);
+  --honey: #ffc412;
+  --honey-ink: #ffc412;
+  --honey-soft: #3a2e0c;
+  --on-honey: #1a1612;
+  --violet: #ff93aa;
+  --on-violet: #1a1612;
+  --success: #4fc7a8;
+  --danger: #ff7a45;
   --shadow-frame: 0 1px 0 rgb(0 0 0 / 0.3), 0 14px 34px -20px rgb(0 0 0 / 0.8);
   --shadow-lift: 0 2px 0 rgb(0 0 0 / 0.3), 0 26px 44px -22px rgb(0 0 0 / 0.9);
   color-scheme: dark;
 }
 
-/* No-JS fallback: follow the OS until the theme script sets data-theme. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --paper: #141311;
-    --paper-2: #1b1a17;
-    --surface: #1e1d1a;
-    --surface-2: #23221e;
-    --chrome: #181715;
-    --ink: #f2ede3;
-    --ink-2: #d1cabd;
-    --ink-3: #a79f91;
-    --line: rgb(242 237 227 / 0.11);
-    --line-strong: rgb(242 237 227 / 0.22);
-    --grid-dot: rgb(242 237 227 / 0.09);
-    --honey: #f5b63c;
-    --honey-ink: #f5b63c;
-    --honey-soft: #3a2c10;
-    --violet: #6a52f2;
-    color-scheme: dark;
-  }
-}
+/* No OS-based fallback: light is the default theme for everyone (dark is opt-in via the toggle). */
 
 @theme inline {
   --color-paper: var(--paper);
@@ -140,8 +170,8 @@ body {
 }
 
 .site ::selection {
-  background: var(--honey);
-  color: var(--on-honey);
+  background: var(--sun);
+  color: var(--on-bright);
 }
 
 .site :focus-visible {
@@ -224,8 +254,8 @@ body {
   height: 28px;
   display: grid;
   place-items: center;
-  background: var(--honey);
-  color: var(--on-honey);
+  background: var(--sun);
+  color: var(--on-bright);
   font: italic 400 17px/1 var(--font-serif);
   border-radius: 3px;
   flex: none;
@@ -349,7 +379,7 @@ body {
   flex: none;
 }
 .status-pill[data-status="busy"] .status-pill__dot { background: var(--ink-3); box-shadow: none; }
-.status-pill[data-status="freelance"] .status-pill__dot { background: var(--honey); }
+.status-pill[data-status="freelance"] .status-pill__dot { background: var(--flame); }
 .toolbar .status-pill { display: none; }
 @media (min-width: 1280px) {
   .toolbar .status-pill { display: inline-flex; }
@@ -667,7 +697,7 @@ body {
 .btn:disabled { opacity: 0.55; cursor: not-allowed; translate: none; box-shadow: none; }
 .btn--honey { --btn-bg: var(--honey); --btn-fg: var(--on-honey); --btn-bd: var(--honey); }
 .btn--ink { --btn-bg: var(--ink); --btn-fg: var(--paper); --btn-bd: var(--ink); }
-.btn--ink:hover { box-shadow: 3px 3px 0 var(--honey); }
+.btn--ink:hover { box-shadow: 3px 3px 0 var(--flame); }
 .btn--sm { min-height: 40px; padding: 0 14px; }
 
 .tag {
@@ -683,7 +713,7 @@ body {
   color: var(--ink-2);
   white-space: nowrap;
 }
-.tag--kind[data-kind="case-study"] { border-color: color-mix(in oklab, var(--honey) 55%, transparent); color: var(--honey-ink); background: var(--honey-soft); }
+.tag--kind[data-kind="case-study"] { border-color: color-mix(in oklab, var(--success) 50%, transparent); color: var(--success); background: color-mix(in oklab, var(--success) 12%, transparent); }
 .tag--kind[data-kind="concept"] { border-style: dashed; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
 
@@ -765,7 +795,7 @@ body {
   margin: 0 -10px;
 }
 @media (min-width: 768px) {
-  .selection { margin-bottom: 44px; }
+  .selection { margin-bottom: 72px; }
 }
 .selection__box {
   position: absolute;
@@ -828,8 +858,8 @@ body {
   top: 18px;
   padding: 3px 8px;
   border-radius: 0 6px 6px 6px;
-  background: var(--honey);
-  color: var(--on-honey);
+  background: var(--flame);
+  color: var(--on-bright);
   font: 600 11.5px/1.2 var(--font-sans);
   white-space: nowrap;
 }
@@ -838,8 +868,8 @@ body {
 .comment {
   position: absolute;
   z-index: 4;
-  right: -18px;
-  top: calc(100% - 22px);
+  right: -40px;
+  top: calc(100% + 14px);
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -860,8 +890,9 @@ body {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--honey);
-  color: var(--on-honey);
+  background: var(--sun);
+  color: var(--on-bright);
+  box-shadow: 0 0 0 2px var(--cream);
   font: italic 400 14px/1 var(--font-serif);
 }
 .comment__who { display: block; font: 600 11px/1.3 var(--font-mono); opacity: 0.85; margin-bottom: 2px; }
@@ -870,14 +901,14 @@ body {
   .selection { display: block; padding: 0; margin: 0; }
   .selection__box, .selection__name, .selection__dims, .handle { display: none; }
   .hero__title .hl {
-    background: linear-gradient(transparent 62%, color-mix(in oklab, var(--honey) 55%, transparent) 62%);
+    background: linear-gradient(transparent 62%, color-mix(in oklab, var(--sun) 70%, transparent) 62%);
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
   }
 }
 
 /* Motion (only for fine pointers without reduced motion; everyone else sees the final state) */
-@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) and (min-width: 768px) {
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) and (min-width: 1024px) {
   .selection .mp-cursor { display: block; }
   .selection:not([data-anim="idle"]) .mp-cursor { animation: cursor-path 7.5s var(--ease-out) 0.4s both; }
   .selection:not([data-anim="idle"]) .selection__box { animation: sel-draw 7.5s var(--ease-out) 0.4s both; }
@@ -885,7 +916,7 @@ body {
   .selection:not([data-anim="idle"]) .selection__dims,
   .selection:not([data-anim="idle"]) .selection__name { animation: fade-in-late 7.5s linear 0.4s both; }
   .selection:not([data-anim="idle"]) .comment { animation: comment-pop 7.5s var(--ease-out) 0.4s both; transform-origin: 0 100%; }
-  .selection[data-anim="idle"] .mp-cursor { translate: calc(var(--sel-w) * 1px + 2px) calc(var(--sel-h) * 1px - 44px); animation: cursor-idle 4s ease-in-out infinite alternate; }
+  .selection[data-anim="idle"] .mp-cursor { translate: calc(var(--sel-w) * 1px - 300px) calc(var(--sel-h) * 1px + 6px); animation: cursor-idle 4s ease-in-out infinite alternate; }
 }
 
 @keyframes cursor-path {
@@ -895,7 +926,7 @@ body {
   30% { translate: -6px -6px; }
   54% { translate: calc(var(--sel-w) * 1px - 4px) calc(var(--sel-h) * 1px - 4px); }
   62% { translate: calc(var(--sel-w) * 1px - 4px) calc(var(--sel-h) * 1px - 4px); }
-  78%, 100% { translate: calc(var(--sel-w) * 1px + 2px) calc(var(--sel-h) * 1px - 44px); }
+  78%, 100% { translate: calc(var(--sel-w) * 1px - 300px) calc(var(--sel-h) * 1px + 6px); }
 }
 @keyframes sel-draw {
   0%, 30% { clip-path: inset(0 100% 100% 0); opacity: 0; }
@@ -1075,7 +1106,7 @@ body {
 
 /* Typographic generated cover (for NDA work without images) */
 .gen-cover {
-  --accent: #f2a516;
+  --accent: #112bac;
   position: absolute;
   inset: 0;
   display: flex;
@@ -1362,10 +1393,10 @@ body {
 .sticky-note {
   position: relative;
   padding: clamp(28px, 5vw, 64px);
-  background: var(--honey);
-  color: var(--on-honey);
+  background: var(--sun);
+  color: var(--on-bright);
   border-radius: 2px;
-  box-shadow: 0 1px 0 rgb(0 0 0 / 0.06), 0 30px 50px -30px rgb(90 60 0 / 0.55);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.06), 0 30px 50px -30px rgb(120 80 0 / 0.55);
   overflow: hidden;
 }
 .sticky-note::after {
@@ -1387,11 +1418,11 @@ body {
 }
 .sticky-note__title em { font-style: italic; }
 .sticky-note__row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(24px, 3vw, 40px); align-items: center; }
-.sticky-note .btn { --btn-bg: var(--on-honey); --btn-fg: #fbf6ea; --btn-bd: var(--on-honey); }
-.sticky-note .btn:hover { box-shadow: 3px 3px 0 #fff7e2; }
-.sticky-note .btn--line { --btn-bg: transparent; --btn-fg: var(--on-honey); --btn-bd: rgb(27 26 23 / 0.4); }
-.sticky-note .status-pill { background: rgb(255 255 255 / 0.45); border-color: rgb(27 26 23 / 0.2); color: #1b1a17; }
-.sticky-note :focus-visible { outline-color: var(--on-honey); }
+.sticky-note .btn { --btn-bg: var(--night); --btn-fg: var(--cream); --btn-bd: var(--night); }
+.sticky-note .btn:hover { box-shadow: 3px 3px 0 var(--flame); }
+.sticky-note .btn--line { --btn-bg: transparent; --btn-fg: var(--night); --btn-bd: rgb(26 22 18 / 0.4); }
+.sticky-note .status-pill { background: rgb(255 255 255 / 0.45); border-color: rgb(26 22 18 / 0.2); color: var(--night); }
+.sticky-note :focus-visible { outline-color: var(--night); }
 
 /* ==========================================================================
    Footer — Ask AI
@@ -1616,7 +1647,8 @@ body {
   place-items: center;
   overflow: hidden;
   background:
-    radial-gradient(90% 70% at 20% 10%, color-mix(in oklab, var(--honey) 45%, transparent), transparent 70%),
+    radial-gradient(90% 70% at 20% 10%, color-mix(in oklab, var(--sun) 55%, transparent), transparent 70%),
+    radial-gradient(70% 60% at 90% 95%, color-mix(in oklab, var(--blush) 55%, transparent), transparent 70%),
     var(--surface);
   container-type: inline-size;
 }
@@ -1808,25 +1840,25 @@ body {
 
 .inspect-layer { position: fixed; inset: 0; z-index: 70; pointer-events: none; }
 .inspect-layer [data-part] { position: fixed; pointer-events: none; }
-.inspect-margin { background: rgb(242 165 22 / 0.16); outline: 1px dashed rgb(242 165 22 / 0.7); }
-.inspect-padding { background: rgb(94 180 120 / 0.2); }
-.inspect-box { outline: 1.5px solid #f2a516; }
+.inspect-margin { background: rgb(255 82 13 / 0.14); outline: 1px dashed rgb(255 82 13 / 0.7); }
+.inspect-padding { background: rgb(13 95 79 / 0.2); }
+.inspect-box { outline: 1.5px solid #112bac; box-shadow: 0 0 0 1px rgb(254 248 243 / 0.6); }
 .inspect-tip {
   max-width: 280px;
   padding: 10px 12px;
   border-radius: 6px;
-  background: #1b1a17;
-  color: #f2ede3;
+  background: #1a1612;
+  color: #fef8f3;
   font: 500 11.5px/1.55 var(--font-mono);
   box-shadow: 0 12px 30px -10px rgb(0 0 0 / 0.5);
 }
-.inspect-tip b { color: #f5b63c; font-weight: 600; }
-.inspect-tip i { font-style: normal; color: #a79f91; }
+.inspect-tip b { color: #ffc412; font-weight: 600; }
+.inspect-tip i { font-style: normal; color: #aba095; }
 .inspect-tip .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 5px; border: 1px solid rgb(255 255 255 / 0.3); }
 .inspect-dim {
   padding: 2px 5px;
-  background: #f2a516;
-  color: #1b1a17;
+  background: #112bac;
+  color: #fef8f3;
   font: 600 10.5px/1.2 var(--font-mono);
   border-radius: 2px;
   white-space: nowrap;
@@ -1842,13 +1874,13 @@ body {
   gap: 10px;
   padding: 8px 10px 8px 14px;
   border-radius: 6px;
-  background: #1b1a17;
-  color: #f2ede3;
+  background: #1a1612;
+  color: #fef8f3;
   font: 500 12px/1 var(--font-mono);
   box-shadow: var(--shadow-lift);
   pointer-events: auto;
 }
-.inspect-badge kbd { padding: 3px 6px; border-radius: 3px; background: #f2a516; color: #1b1a17; font: inherit; }
+.inspect-badge kbd { padding: 3px 6px; border-radius: 3px; background: #ffc412; color: #1a1612; font: inherit; }
 .inspect-badge button { min-height: 30px; padding: 0 10px; border: 1px solid rgb(255 255 255 / 0.2); border-radius: 4px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
 html[data-inspect="on"] .site main * { cursor: crosshair; }
 
@@ -1947,3 +1979,240 @@ html[data-inspect="on"] .site main * { cursor: crosshair; }
 .more-sheet a::after { display: none !important; }
 .more-sheet__h { margin: 4px 12px 6px; font: 600 10.5px/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
 .more-scrim { position: fixed; inset: 0; z-index: 55; background: rgb(0 0 0 / 0.25); border: 0; }
+
+/* ==========================================================================
+   Vibrant layer — brand colours as "tones" (coloured FigJam-like sections)
+   Any element with data-tone exposes --c (solid), --c-ink (text), --c-soft (tint), --c-on.
+   ========================================================================== */
+
+.site { --c: var(--honey); --c-ink: var(--honey-ink); --c-soft: var(--honey-soft); --c-on: var(--on-honey); }
+[data-tone="cobalt"] { --c: var(--cobalt); --c-ink: var(--cobalt-ink); --c-soft: var(--cobalt-soft); --c-on: var(--cobalt-on); }
+[data-tone="flame"] { --c: var(--flame); --c-ink: var(--flame-ink); --c-soft: var(--flame-soft); --c-on: var(--flame-on); }
+[data-tone="forest"] { --c: var(--forest); --c-ink: var(--forest-ink); --c-soft: var(--forest-soft); --c-on: var(--forest-on); }
+[data-tone="blush"] { --c: var(--blush); --c-ink: var(--blush-ink); --c-soft: var(--blush-soft); --c-on: var(--blush-on); }
+[data-tone="sun"] { --c: var(--sun); --c-ink: var(--sun-ink); --c-soft: var(--sun-soft); --c-on: var(--sun-on); }
+
+/* Section heads: coloured eyebrow chip, frame label and italic accent */
+[data-tone] > .block-head .eyebrow,
+[data-tone] .block-head .eyebrow {
+  color: var(--c-ink);
+  background: var(--c-soft);
+  padding: 5px 9px 5px 8px;
+  border-radius: 3px;
+}
+[data-tone] .eyebrow::before { background: var(--c); width: 8px; height: 8px; border-radius: 2px; }
+[data-tone] .h-section em,
+[data-tone] .page-title em { color: var(--c-ink); }
+[data-tone] > .frame-label svg,
+[data-tone] .frame-label svg { color: var(--c-ink); }
+[data-tone] > .frame-label { color: var(--c-ink); }
+
+/* Layers panel: section children pick up their section colour */
+.layer--child[data-tone] svg { color: var(--c-ink); }
+.layer--child[data-tone][data-active="true"] { background: var(--c-soft); color: var(--ink); }
+
+/* Toolbar presence avatars */
+.presence { display: none; list-style: none; margin: 0 6px 0 0; padding: 0; }
+@media (min-width: 1100px) {
+  .presence { display: flex; }
+}
+.presence__avatar {
+  width: 28px;
+  height: 28px;
+  margin-left: -7px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--c);
+  color: var(--c-on);
+  font: 600 12px/1 var(--font-sans);
+  box-shadow: 0 0 0 2px var(--chrome);
+}
+.presence__avatar:first-child { margin-left: 0; }
+
+/* Ghost collaborator cursors: they live only in the empty zone above the inspector card
+   (never over content) and show up now and then: fade in, drift, fade out, pause. */
+.hero__side { display: none; }
+@media (min-width: 1180px) {
+  .hero__side { display: flex; flex-direction: column; align-self: stretch; gap: 16px; min-width: 0; }
+  .hero__side .props { align-self: stretch; }
+}
+.ghosts { position: relative; flex: 1; min-height: 120px; pointer-events: none; container-type: size; }
+.ghost { position: absolute; left: 0; top: 0; display: none; opacity: 0; }
+.ghost svg { display: block; width: 20px; height: 20px; filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.2)); }
+.ghost__name {
+  position: absolute;
+  left: 15px;
+  top: 16px;
+  padding: 2px 7px;
+  border-radius: 0 6px 6px 6px;
+  background: var(--c);
+  color: var(--c-on);
+  font: 600 11px/1.3 var(--font-sans);
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) and (min-width: 1180px) {
+  .ghost { display: block; }
+  .ghost--a { animation: ghost-a 22s ease-in-out 6s infinite both; }
+  .ghost--b { animation: ghost-b 22s ease-in-out 17s infinite both; }
+}
+/* Paths stay inside the zone: x up to 100cqw - 90px (name tag), y up to 100cqh - 40px. */
+@keyframes ghost-a {
+  0% { translate: 8cqw 10cqh; opacity: 0; }
+  6% { opacity: 1; }
+  22% { translate: calc(60cqw - 90px) calc(22cqh); }
+  36% { translate: calc(40cqw - 40px) calc(100cqh - 44px); opacity: 1; }
+  44%, 100% { translate: calc(40cqw - 40px) calc(100cqh - 44px); opacity: 0; }
+}
+@keyframes ghost-b {
+  0% { translate: calc(100cqw - 100px) calc(100cqh - 50px); opacity: 0; }
+  6% { opacity: 1; }
+  24% { translate: calc(70cqw - 90px) 12cqh; }
+  36% { translate: 14cqw 30cqh; opacity: 1; }
+  44%, 100% { translate: 14cqw 30cqh; opacity: 0; }
+}
+
+/* Hero accents */
+.hero__kicker > span:first-child { color: var(--cobalt-ink); }
+.props__tabs b { color: var(--cobalt-ink); box-shadow: inset 0 -2px 0 var(--cobalt); padding-bottom: 9px; margin-bottom: -11px; }
+
+/* "Who is Hunny?" as a blush sticky */
+.answer__q {
+  align-self: start;
+  justify-self: start;
+  padding: 18px 20px 22px;
+  background: var(--blush);
+  color: var(--blush-on);
+  border-radius: 2px;
+  rotate: -1.5deg;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.05), 0 18px 30px -20px rgb(120 30 60 / 0.55);
+  max-width: 240px;
+}
+
+/* Work cards: frame label chip + outline in the kind colour */
+.work-card__label > span:nth-child(2) {
+  padding: 3px 6px;
+  border-radius: 3px;
+  background: var(--c-soft);
+  color: var(--c-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.work-card__label svg { color: var(--c-ink); }
+@media (hover: hover) {
+  .work-card__link:hover .work-card__frame { outline-color: var(--c); }
+  .work-card__link:hover .work-card__label { color: var(--ink-3); }
+  .work-card__link:hover .work-card__label > span:nth-child(2) { background: var(--c); color: var(--c-on); }
+}
+.work-card__link:focus-visible .work-card__frame { outline-color: var(--c); }
+.work-card .tag--kind { background: var(--c-soft); color: var(--c-ink); border-color: color-mix(in oklab, var(--c) 45%, transparent); border-style: solid; }
+
+/* Multi-colour soft tags and chips */
+.tag--tone { background: var(--c-soft); color: var(--c-ink); border-color: transparent; }
+.chip--tone[data-tone] .chip__count { color: var(--c-ink); }
+.chip--tone[data-tone]::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--c); }
+.chip--tone[data-tone][aria-pressed="true"] { background: var(--c); border-color: var(--c); color: var(--c-on); }
+.chip--tone[data-tone][aria-pressed="true"]::before { background: var(--c-on); }
+.chip--tone[data-tone][aria-pressed="true"] .chip__count { color: inherit; }
+.kind-dot { color: var(--c-ink); }
+.kind-note { border-left-color: var(--cobalt); background: color-mix(in oklab, var(--cobalt-soft) 55%, var(--surface)); }
+
+/* Experience: coloured version dots */
+.history__item[data-tone] .history__dot { border-color: var(--c); background: var(--c-soft); }
+.history__item[data-tone][data-current="true"] .history__dot { background: var(--c); box-shadow: 0 0 0 4px var(--c-soft); }
+.history__item[data-tone] .history__when b { color: var(--c-ink); }
+.history__item[data-tone] .history__bullets li::before { border-color: var(--c); }
+
+/* Toolkit: each component set in its own colour */
+.sets > [data-tone] .set__box { border-color: var(--c); background: color-mix(in oklab, var(--c-soft) 45%, transparent); }
+.sets > [data-tone] .set__label, .sets > [data-tone] .set__label svg, .sets > [data-tone] .instance svg { color: var(--c-ink); }
+.core li[data-tone]::before { color: var(--c-ink); }
+
+/* FAQ numbers and open state */
+.faq details[data-tone] .faq__n { color: var(--c-ink); }
+.faq details[data-tone][open] summary::after {
+  background-color: var(--c);
+  border-color: var(--c);
+  background-image:
+    linear-gradient(var(--c-on), var(--c-on)),
+    linear-gradient(var(--c-on), var(--c-on));
+}
+.faq details[data-tone] summary:hover { color: var(--c-ink); }
+
+/* Case study */
+.cs-section[data-tone] .cs-section__h span { color: var(--c-ink); }
+.highlights li[data-tone] { border-top: 3px solid var(--c); }
+.highlights li[data-tone] svg { color: var(--c-ink); }
+.metrics div[data-tone] { border-top: 3px solid var(--c); }
+.metrics div[data-tone] dd { color: var(--c-ink); }
+.edu li .edu__kind { color: var(--cobalt-ink); }
+.edu li:nth-child(2) .edu__kind { color: var(--flame-ink); }
+.edu li:nth-child(3) .edu__kind { color: var(--forest-ink); }
+
+/* Ask-AI buttons: each fills with its own brand colour on hover */
+.ask-ai__list [data-tone] .ai-btn:hover { border-color: var(--c); background: var(--c-soft); box-shadow: 2px 2px 0 var(--c); }
+
+/* Buttons: primary stays the accent; flame offset shadow for a little energy */
+.btn:hover { box-shadow: 3px 3px 0 var(--flame); }
+.btn--ink:hover { box-shadow: 3px 3px 0 var(--sun); }
+
+/* Comment bubble in blush (brand "comment" colour) */
+.comment { background: var(--blush); color: var(--blush-on); }
+.comment__avatar { background: var(--sun); color: var(--sun-on); }
+.quote__avatar { background: var(--blush); color: var(--blush-on); }
+
+/* Hunny's name tag sits left of the arrow (the arrow ends at the bubble's corner). */
+.mp-cursor__name { left: auto; right: 10px; top: 16px; border-radius: 6px 0 6px 6px; }
+
+/* Dark mobile: highlighted statement uses night text on a solid sun band (11:1). */
+@media (max-width: 767.98px) {
+  [data-theme="dark"] .hero__title .hl {
+    background: var(--sun);
+    color: var(--night);
+    padding: 0 0.06em;
+  }
+}
+
+/* Palette: long queries wrap instead of overflowing */
+.cmdk__empty { overflow-wrap: anywhere; }
+
+/* Presence stack: small ring gap + hover/focus role tooltip */
+.presence__item { position: relative; margin-left: -4px; }
+.presence__item:first-child { margin-left: 0; }
+.presence__avatar { margin-left: 0 !important; box-shadow: 0 0 0 2.5px var(--chrome); cursor: default; }
+.presence__avatar:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+.presence__avatar::after {
+  content: attr(data-name);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  translate: -50% 0;
+  padding: 4px 7px;
+  border-radius: 3px;
+  background: var(--c);
+  color: var(--c-on);
+  font: 600 11px/1 var(--font-mono);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s;
+  z-index: 60;
+}
+.presence__avatar:hover::after, .presence__avatar:focus-visible::after { opacity: 1; }
+
+/* Work frame chips: tinted with each project's own accent; kind colour stays on tag + outline */
+.work-card__label > span:nth-child(2) {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: color-mix(in oklab, var(--acc, var(--c)) 20%, var(--surface));
+  color: var(--ink);
+}
+.work-card__label > span:nth-child(2)::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--acc, var(--c));
+}

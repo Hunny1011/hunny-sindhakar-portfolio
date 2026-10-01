@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 type Item = { slug: string; kind: string; platform: string[] };
-type Option = { value: string; label: string };
+type Option = { value: string; label: string; tone?: string };
 
 /**
  * Filter chips for the server-rendered work grid. Cards stay in the HTML (good for SEO);
@@ -61,7 +61,14 @@ export function WorkFilter({
     <>
       <div className="filters" role="group" aria-label="Filter by type">
         {[{ value: "all", label: "All work" }, ...kinds].map((o) => (
-          <button key={o.value} type="button" className="chip" aria-pressed={kind === o.value} onClick={() => setKind(o.value)}>
+          <button
+            key={o.value}
+            type="button"
+            className="chip chip--tone"
+            data-tone={"tone" in o ? o.tone : undefined}
+            aria-pressed={kind === o.value}
+            onClick={() => setKind(o.value)}
+          >
             {o.label}
             <span className="chip__count">{count(o.value, platform)}</span>
           </button>

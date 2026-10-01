@@ -7,6 +7,7 @@ import { Frame, Hand, MessageCircle, Moon, MousePointer2, PanelLeft, ScanSearch,
 import type { Availability } from "@/lib/types";
 import { pageLabel } from "./nav";
 import { useShell } from "./shell-provider";
+import { PresenceStack } from "./presence";
 
 const subscribeResize = (cb: () => void) => {
   window.addEventListener("resize", cb);
@@ -85,6 +86,7 @@ export function Toolbar({ availability, availabilityNote }: { availability: Avai
         </p>
       </div>
       <div className="toolbar__right">
+        <PresenceStack />
         <Link href="/contact" className="status-pill" data-status={availability} title={availabilityNote ?? undefined}>
           <span className="status-pill__dot" aria-hidden />
           {STATUS_LABEL[availability]}

@@ -57,6 +57,7 @@ async function main() {
   console.log(`site_settings: ${Object.keys(data.settings).length}`);
 
   const projects = [];
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- behanceId is only a seed-time reference
   for (const [index, { images = [], behanceId: _b, ...project }] of data.projects.entries()) {
     const gallery = [];
     for (const [i, src] of images.entries()) {

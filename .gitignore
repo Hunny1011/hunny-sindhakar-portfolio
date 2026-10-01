@@ -44,3 +44,6 @@ next-env.d.ts
 # local secrets
 *.local
 .admin-credentials*
+
+# Claude Code runtime files
+.claude/scheduled_tasks.lock

@@ -7,7 +7,7 @@ import { FrameGlyph } from "./icons";
 import { PAGES, isActive } from "./nav";
 import { useShell } from "./shell-provider";
 
-type Child = { id: string; name: string };
+type Child = { id: string; name: string; tone?: string };
 
 // Left "Layers" panel: pages are layers; the current page's frames (sections marked
 // with data-layer) are listed as children and highlighted while in view.
@@ -21,7 +21,7 @@ export function LayersPanel({ location }: { location: string }) {
     let io: IntersectionObserver | undefined;
     const frame = requestAnimationFrame(() => {
       const els = Array.from(document.querySelectorAll<HTMLElement>("#main [data-layer][id]"));
-      setChildren(els.map((el) => ({ id: el.id, name: el.dataset.layer ?? el.id })));
+      setChildren(els.map((el) => ({ id: el.id, name: el.dataset.layer ?? el.id, tone: el.dataset.tone })));
       setActiveId(els[0]?.id ?? null);
       io = new IntersectionObserver(
         (entries) => {
@@ -68,7 +68,7 @@ export function LayersPanel({ location }: { location: string }) {
                     <ul className="layers__children" aria-label={`${page.label} sections`}>
                       {children.map((c) => (
                         <li key={c.id}>
-                          <a href={`#${c.id}`} className="layer layer--child" data-active={c.id === activeId} onClick={close}>
+                          <a href={`#${c.id}`} className="layer layer--child" data-active={c.id === activeId} data-tone={c.tone} onClick={close}>
                             <FrameGlyph />
                             {c.name}
                           </a>

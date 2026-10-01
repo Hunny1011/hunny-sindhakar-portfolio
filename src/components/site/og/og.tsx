@@ -21,9 +21,10 @@ async function fonts() {
   ];
 }
 
-const HONEY = "#f2a516";
-const INK = "#1b1a17";
-const PAPER = "#f6f3ec";
+const HONEY = "#112bac"; // cobalt: selection box
+const SUN = "#ffc412"; // monogram tile
+const INK = "#1a1612";
+const PAPER = "#fef8f3";
 
 /** Branded canvas-style social card: dot grid, a frame label and a honey selection box. */
 export async function canvasCard({
@@ -60,8 +61,8 @@ export async function canvasCard({
         }}
       >
         <div style={{ position: "absolute", right: 0, top: 0, width: 520, height: 630, display: "flex", background: `radial-gradient(circle at 100% 0%, ${accent}55, transparent 70%)` }} />
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 22, color: "#635d53" }}>
-          <div style={{ display: "flex", width: 44, height: 44, background: HONEY, alignItems: "center", justifyContent: "center", fontFamily: "Serif", fontStyle: "italic", fontSize: 32, color: INK, borderRadius: 4 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 22, color: "#675d54" }}>
+          <div style={{ display: "flex", width: 44, height: 44, background: SUN, alignItems: "center", justifyContent: "center", fontFamily: "Serif", fontStyle: "italic", fontSize: 32, color: INK, borderRadius: 4 }}>
             H
           </div>
           <span style={{ color: INK }}>Hunny Sindhakar</span>
@@ -80,7 +81,7 @@ export async function canvasCard({
             </div>
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#45413a" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#463e37" }}>
           <span>{footer}</span>
           <span style={{ display: "flex", background: accent, width: 16, height: 16, borderRadius: 8, marginTop: 4 }} />
         </div>
@@ -101,7 +102,7 @@ export async function monogramIcon(px: number) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: HONEY,
+          background: SUN,
           borderRadius: px > 100 ? 0 : px * 0.18,
           fontFamily: "Serif",
           fontStyle: "italic",

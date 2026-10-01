@@ -109,7 +109,9 @@ export function ShellProvider({ palette, children }: { palette: PaletteData; chi
         return;
       }
       if (e.metaKey || e.ctrlKey || e.altKey || isTyping(e.target) || paletteOpen) return;
-      if (e.key === "i" || e.key === "I") toggleInspect();
+      if (e.key === "i" || e.key === "I" || e.code === "KeyI") {
+        if (!e.repeat) toggleInspect(); // holding the key must not flicker the mode
+      }
       else if (e.key === "Escape") {
         if (inspect) toggleInspect();
         setPanelOpen(false);

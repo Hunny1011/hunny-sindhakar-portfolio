@@ -3,6 +3,7 @@ import Link from "next/link";
 import { KIND_LABEL, projectOrigin } from "@/lib/format";
 import type { Project } from "@/lib/types";
 import { FrameGlyph } from "./icons";
+import { KIND_TONE } from "./tones";
 
 const isMobile = (p: Project) => p.platforms.some((x) => /mobile app|ios|android/i.test(x)) && !p.platforms.some((x) => /^web app$/i.test(x));
 const isPrint = (p: Project) => p.kind === "graphic" || p.platforms.some((x) => /print/i.test(x));
@@ -50,7 +51,7 @@ export function GenCover({ project, headingLevel = "p" }: { project: Project; he
   const Title = headingLevel;
   const nda = project.kind === "case-study" && project.gallery.length === 0;
   return (
-    <div className="gen-cover" style={{ "--accent": project.accent ?? "#f2a516" } as React.CSSProperties}>
+    <div className="gen-cover" style={{ "--accent": project.accent ?? "#112bac" } as React.CSSProperties}>
       <div className="gen-cover__top">
         <span>{project.category}</span>
         <span>{project.platforms.join(" + ")}</span>
@@ -90,7 +91,7 @@ export function WorkCard({
 }) {
   const H = headingLevel;
   return (
-    <article className="work-card">
+    <article className="work-card" data-tone={KIND_TONE[project.kind]} style={{ "--acc": project.accent ?? undefined } as React.CSSProperties}>
       <Link href={`/work/${project.slug}`} className="work-card__link">
         <span className="work-card__label" aria-hidden>
           <FrameGlyph />

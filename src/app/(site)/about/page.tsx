@@ -126,7 +126,7 @@ export default async function AboutPage() {
       </section>
 
       {experiences.length > 0 && (
-        <Block id="experience" layer="Experience">
+        <Block id="experience" tone="flame" layer="Experience">
           <BlockHead
             id="experience"
             eyebrow="Version history"
@@ -141,7 +141,7 @@ export default async function AboutPage() {
       )}
 
       {education.length > 0 && (
-        <Block id="education" layer="Education">
+        <Block id="education" tone="cobalt" layer="Education">
           <BlockHead
             id="education"
             eyebrow="Education & certifications"
@@ -170,7 +170,7 @@ export default async function AboutPage() {
       )}
 
       {(skills.length > 0 || profile.core_skills.length > 0) && (
-        <Block id="skills" layer="Skills">
+        <Block id="skills" tone="forest" layer="Skills">
           <BlockHead
             id="skills"
             eyebrow="Skills & tools"
@@ -191,7 +191,7 @@ export default async function AboutPage() {
       )}
 
       {socials.length > 0 && (
-        <Block id="elsewhere" layer="Elsewhere">
+        <Block id="elsewhere" tone="blush" layer="Elsewhere">
           <BlockHead id="elsewhere" eyebrow="Elsewhere" title={<>Find me <em>online</em></>} />
           <ul className="socials">
             {socials.map((s) => (
