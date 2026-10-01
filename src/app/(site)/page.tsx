@@ -29,10 +29,12 @@ import { buildMetadata, faqJsonLd, personJsonLd, websiteJsonLd } from "@/lib/seo
 
 export async function generateMetadata() {
   const settings = await getSettings();
-  return {
-    ...buildMetadata({ title: settings.seo_default_title, description: settings.seo_default_description, path: "/", type: "profile" }),
+  return buildMetadata({
     title: { absolute: settings.seo_default_title },
-  };
+    description: settings.seo_default_description,
+    path: "/",
+    type: "profile",
+  });
 }
 
 export default async function HomePage() {

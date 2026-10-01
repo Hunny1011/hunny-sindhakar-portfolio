@@ -10,7 +10,8 @@ import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 export async function generateMetadata() {
   const profile = await getProfile();
   return buildMetadata({
-    title: `Résumé — ${profile.name}, ${profile.role}`,
+    title: "Résumé",
+    socialTitle: `Résumé — ${profile.name}, ${profile.role}`,
     description: `Web résumé of ${profile.name}: experience, education, skills and languages. ${profile.short_bio}`.slice(0, 160),
     path: "/resume",
     type: "profile",

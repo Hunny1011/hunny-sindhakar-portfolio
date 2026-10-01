@@ -11,13 +11,16 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Serve the admin panel at the secret path (see src/lib/admin/path.ts).
   async rewrites() {
-    if (!adminPath || adminPath === "admin") return [];
+    const hidden = adminPath && adminPath !== "admin";
     return {
-      beforeFiles: [
-        { source: `/${adminPath}`, destination: "/admin" },
-        { source: `/${adminPath}/:path*`, destination: "/admin/:path*" },
-      ],
-      afterFiles: [],
+      beforeFiles: hidden
+        ? [
+            { source: `/${adminPath}`, destination: "/admin" },
+            { source: `/${adminPath}/:path*`, destination: "/admin/:path*" },
+          ]
+        : [],
+      // Crawlers and old browsers request /favicon.ico directly; serve the generated icon.
+      afterFiles: [{ source: "/favicon.ico", destination: "/icon" }],
       fallback: [],
     };
   },

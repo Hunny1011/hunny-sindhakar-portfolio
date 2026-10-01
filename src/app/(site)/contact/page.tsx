@@ -12,7 +12,8 @@ import { Statement } from "@/components/site/statement";
 export async function generateMetadata() {
   const profile = await getProfile();
   return buildMetadata({
-    title: `Contact ${profile.name}`,
+    title: "Contact & hire",
+    socialTitle: `Contact ${profile.name} — hire a UI/UX designer`,
     description: `Hire or work with ${profile.name}, ${profile.role} in ${profile.location}. ${profile.availability_note ?? ""}`.trim(),
     path: "/contact",
   });

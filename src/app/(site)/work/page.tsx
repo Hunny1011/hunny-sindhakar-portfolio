@@ -9,7 +9,8 @@ import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import type { ProjectKind } from "@/lib/types";
 
 export const metadata = buildMetadata({
-  title: "Work — UI/UX case studies and concepts",
+  title: "UI/UX case studies & projects",
+  socialTitle: "Work — UI/UX case studies and concepts by Hunny Sindhakar",
   description:
     "UI/UX case studies by Hunny Sindhakar for Bombay Softwares and Immence — AI, SaaS, HR, sports and mobility — plus mobile and web concept projects and graphic design.",
   path: "/work",

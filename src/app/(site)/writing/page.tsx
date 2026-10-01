@@ -6,8 +6,9 @@ import { getPosts, getSocialLinks } from "@/lib/data";
 import { articleListJsonLd, breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Writing — notes on UI/UX design",
-  description: "Articles by Hunny Sindhakar on UI and UX design, published on Medium.",
+  title: "Writing on UI/UX design",
+  description:
+    "Articles by Hunny Sindhakar, UI/UX designer in Ahmedabad, on UI vs UX, user experience and product design — simple explanations with real-world examples.",
   path: "/writing",
 });
 
